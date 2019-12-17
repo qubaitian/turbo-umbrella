@@ -5,13 +5,14 @@
 ## 安装 Docker Engine-Community
 
     sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    
     sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
-## 启动docker服务
+## 启动docker
 
     sudo systemctl start docker
     
-## 重启服务
+## 重启docker
 
 重启防火墙可能需要重启docker
 
