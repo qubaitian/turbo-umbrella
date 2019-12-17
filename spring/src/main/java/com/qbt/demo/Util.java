@@ -35,7 +35,6 @@ public class Util {
         }else{
             Class c = o.getClass();
             Field[] declaredFields = c.getDeclaredFields();
-            System.out.println(o);
             for (int i = 0; i < declaredFields.length; i++) {
                 declaredFields[i].setAccessible(true);
                 System.out.println(declaredFields[i].getName() + " " + declaredFields[i].get(o));
