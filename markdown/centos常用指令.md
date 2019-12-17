@@ -1,58 +1,58 @@
-##删除文件夹
+## 删除文件夹
 
     rm -rf conf
      
-##创建文件
+## 创建文件
 
     touch frpc.ini
      
-##重启docker
+## 重启docker
 
     systemctl restart docker
      
-##查看端口
+## 查看端口
 
     netstat -lnpt
     
-##查看某个端口
+## 查看某个端口
 
     netstat -lnpt |grep 5672
     
-##查看防火墙
+## 查看防火墙
 
     systemctl status firewalld.service
     
-##打开防火墙
+## 打开防火墙
 
     systemctl start firewalld.service
     
-##关闭防火墙
+## 关闭防火墙
 
     systemctl stop firewalld.service
     
-##添加某个端口
+## 添加某个端口
 
     firewall-cmd --zone=public --add-port=8081/tcp --permanent
     
-##关闭某个端口
+## 关闭某个端口
 
     firewall-cmd --zone=public --remove-port=5672/tcp --permanent
     
-##打开所有端口
+## 打开所有端口
 
     firewall-cmd --zone=public --list-ports
     
-##删除电脑上的钥匙
+## 删除电脑上的钥匙
 
-比如服务器重装了就需要删
+###### 比如服务器重装了就需要删
 
     ssh-keygen -R 122.51.240.129
      
-##查看centos的版本
+## 查看centos的版本
 
     cat /etc/centos-release
     
-##解压tar.gz
+## 解压tar.gz
 
     tar -zxvf java.tar.gz
     
