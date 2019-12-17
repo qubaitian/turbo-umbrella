@@ -1,0 +1,10 @@
+compatibility 兼容性
+compose 组合,作曲
+composed 复合
+composed annotation 符合注释
+inception 起初,获得学位,盗梦空间
+individual 个人,个体,个别的
+boilerplate 样板文件
+abbreviation 缩写
+specify 指定 
+underscores 下划线
