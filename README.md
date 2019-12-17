@@ -1,6 +1,6 @@
-## spring_project_and_java_method
+## spring
 
-spring项目和一些java方法(都在Test)
+spring项目和一些java方法(在Test里)
 
 ## markdown
 
