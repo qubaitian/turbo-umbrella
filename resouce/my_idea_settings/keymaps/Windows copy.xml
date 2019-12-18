@@ -1,5 +1,8 @@
 <keymap version="1" name="Windows copy" parent="$default">
-  <action id="ActivateTerminalToolWindow">
-    <keyboard-shortcut first-keystroke="alt t" />
-  </action>
+    <action id="ActivateTerminalToolWindow">
+        <keyboard-shortcut first-keystroke="alt t"/>
+    </action>
+    <action id="ActivateDatabaseToolWindow">
+        <keyboard-shortcut first-keystroke="alt d"/>
+    </action>
 </keymap>
