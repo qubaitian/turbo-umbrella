@@ -1,0 +1,43 @@
+<keymap version="1" name="Windows copy" parent="$default">
+  <action id="ActivateDatabaseToolWindow">
+    <keyboard-shortcut first-keystroke="alt d" />
+  </action>
+  <action id="ActivateServicesToolWindow">
+    <keyboard-shortcut first-keystroke="alt s" />
+  </action>
+  <action id="ActivateTerminalToolWindow">
+    <keyboard-shortcut first-keystroke="alt t" />
+  </action>
+  <action id="ChangesView.GroupBy.Module" />
+  <action id="CloseActiveTab">
+    <keyboard-shortcut first-keystroke="shift ctrl alt up" />
+  </action>
+  <action id="CloseAllEditorsButActive">
+    <keyboard-shortcut first-keystroke="alt c" />
+  </action>
+  <action id="ExtractFunction" />
+  <action id="ExtractMethod" />
+  <action id="FileChooser.NewFolder">
+    <keyboard-shortcut first-keystroke="alt insert" />
+  </action>
+  <action id="GotoChangedFile" />
+  <action id="GotoClass" />
+  <action id="Terminal.MoveToEditor">
+    <keyboard-shortcut first-keystroke="ctrl n" />
+  </action>
+  <action id="Terminal.RenameSession">
+    <keyboard-shortcut first-keystroke="alt n" />
+  </action>
+  <action id="Terminal.SwitchFocusToEditor" />
+  <action id="TodoViewGroupByShowModules" />
+  <action id="UpdateRunningApplication" />
+  <action id="Vcs.ToggleAmendCommitMode" />
+  <action id="Vcs.UpdateProject" />
+  <action id="VcsShowPrevChangeMarker" />
+  <action id="android.deploy.ApplyChanges">
+    <keyboard-shortcut first-keystroke="ctrl f10" />
+  </action>
+  <action id="android.deploy.CodeSwap">
+    <keyboard-shortcut first-keystroke="ctrl alt f10" />
+  </action>
+</keymap>
