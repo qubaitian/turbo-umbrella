@@ -9,7 +9,6 @@ public class QbtUtil {
 
     private static FileReader fileReader;
 
-
     public static Object getter(Object o, String fieldName) {
         try {
             Class c = o.getClass();

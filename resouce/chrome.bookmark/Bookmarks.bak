@@ -1,0 +1,68 @@
+{
+   "checksum": "ed6ef61ee83b9fd4ce0fc030b618f952",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13220262533679232",
+            "guid": "6ccb799c-711e-461d-81dd-917a68d1750d",
+            "id": "11",
+            "name": "eolinker",
+            "type": "url",
+            "url": "https://www.eolinker.com/#/home/ams/project/inside/api/list?groupID=-1&projectHashKey=sUHbGHu4acd8968bc4212a91502efd05d70c619fd41b361&spaceKey=IGAiZ1P751bb7544064ac377a0188159d4639ea4e5104b9"
+         }, {
+            "date_added": "13220326148035996",
+            "guid": "f77fcb70-1956-431d-9bb4-255182f99565",
+            "id": "13",
+            "name": "ebo_group",
+            "type": "url",
+            "url": "http://154.8.227.18/ebo_group"
+         }, {
+            "date_added": "13220326170018620",
+            "guid": "8646fbe0-bb1e-4686-8165-ca0dd41abede",
+            "id": "14",
+            "name": "项目信息",
+            "type": "url",
+            "url": "https://shimo.im/docs/dQkEVzxeZjtKFnAw"
+         }, {
+            "date_added": "13221035907546338",
+            "guid": "ba5028e1-aa15-4d6c-8367-048b93a14f83",
+            "id": "16",
+            "name": "云服务器",
+            "type": "url",
+            "url": "https://cloud.tencent.com/product/cvm"
+         }, {
+            "date_added": "13221126004830274",
+            "guid": "e07910c4-5a48-4e3c-b652-fd61249fbfb7",
+            "id": "18",
+            "name": "lookdiv",
+            "type": "url",
+            "url": "http://lookdiv.com/nssdh/sereas/sxclo/aloif/smxs/slak/pdoasj/ejekoq/ewqqzsd/wsdwwq/ers.html"
+         } ],
+         "date_added": "13220183374588026",
+         "date_modified": "13221126004830274",
+         "guid": "00000000-0000-4000-A000-000000000002",
+         "id": "1",
+         "name": "书签栏",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13220183374588233",
+         "date_modified": "0",
+         "guid": "00000000-0000-4000-A000-000000000003",
+         "id": "2",
+         "name": "其他书签",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13220183374588236",
+         "date_modified": "0",
+         "guid": "00000000-0000-4000-A000-000000000004",
+         "id": "3",
+         "name": "移动设备书签",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}
