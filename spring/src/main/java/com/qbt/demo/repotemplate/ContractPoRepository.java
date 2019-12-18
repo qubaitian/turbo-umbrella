@@ -1,4 +1,4 @@
-package com.qbt.demo.repo_template;
+package com.qbt.demo.repotemplate;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.qbt.demo.Util.setter;
+import static com.qbt.demo.QbtUtil.setter;
 
 @org.springframework.stereotype.Repository
 public class ContractPoRepository implements Repository<Contract> {

@@ -1,10 +1,10 @@
-package com.qbt.demo.repo_template;
+package com.qbt.demo.repotemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.qbt.demo.Util.getter;
-import static com.qbt.demo.Util.setter;
+import static com.qbt.demo.QbtUtil.getter;
+import static com.qbt.demo.QbtUtil.setter;
 
 
 public class ContractPoUtil {
@@ -21,7 +21,6 @@ public class ContractPoUtil {
             return result;
         }
     }
-
 
     public static List<Contract> toEntityList(List<ContractPo> list) {
         if (list == null) {

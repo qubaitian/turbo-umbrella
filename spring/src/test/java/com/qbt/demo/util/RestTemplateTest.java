@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class AppleTest {
+public class RestTemplateTest {
     private String local = "http://localhost:8080";
 
     private RestTemplate restTemplate = new RestTemplate();

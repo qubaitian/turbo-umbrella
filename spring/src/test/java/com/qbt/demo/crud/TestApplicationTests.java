@@ -1,7 +1,7 @@
-package com.qbt.demo.crud_test;
+package com.qbt.demo.crud;
 
 import com.qbt.demo.MockStarter;
-import com.qbt.demo.repo_template.Contract;
+import com.qbt.demo.repotemplate.Contract;
 import com.yhhl.ebo.commom.persistence.Repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static com.qbt.demo.Util.getter;
-import static com.qbt.demo.Util.toStr;
+import static com.qbt.demo.QbtUtil.getter;
+import static com.qbt.demo.QbtUtil.toStr;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MockStarter.class)
