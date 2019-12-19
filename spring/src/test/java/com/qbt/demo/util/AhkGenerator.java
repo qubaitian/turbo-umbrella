@@ -1,8 +1,11 @@
 package com.qbt.demo.util;
 
+import com.qbt.demo.method.FileGenerator;
 import com.qbt.demo.method.PrivateUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class AhkGenerator {
@@ -20,6 +23,7 @@ public class AhkGenerator {
         AhkString("p" + nick, pw);
         AhkString("n" + nick, name);
     }
+
 
     @Test
     void addCode8() throws Exception {
@@ -40,6 +44,11 @@ public class AhkGenerator {
 
     private static void AhkString(String name, String content) throws Exception {
         PrivateUtil.insertContent("C:\\work\\spring_proj\\src\\test\\java\\com\\qbt\\test\\ahk\\working.ahk", "::" + name + "::" + content + "\n", 0L);
+    }
+
+
+    private void addLine(String fileName,String where,String content) throws Exception {
+        FileGenerator.changeAndAppend(fileName,fileName,"", new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }
 
     private static String pGenerate(int digit) {
