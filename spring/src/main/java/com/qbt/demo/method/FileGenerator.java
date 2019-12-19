@@ -1,17 +1,30 @@
 package com.qbt.demo.method;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.List;
 
 public class FileGenerator {
-    
+
+    public static void createDir(String pack) {
+        File myPath = new File(pack);
+        if (!myPath.exists()) {
+            myPath.mkdir();
+            System.out.println("创建文件夹路径为：" + pack);
+        }
+    }
+
+    public static void createFile(String fileName) throws Exception {
+        File myPath = new File(fileName);
+        if (!myPath.exists()) {
+            boolean newFile = myPath.createNewFile();
+            System.out.println("创建文件夹路径为：" + fileName);
+        }
+    }
+
     public static void changeAndAppend(String from, String to, String pack, List<String> oldWord, List<String> newWord, List<String> position, List<String> content) throws Exception {
         FileReader fileReader = new FileReader(from);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        PrivateUtil.createFile(to);
+        createFile(to);
         FileWriter fileWriter = new FileWriter(to);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         String s;
