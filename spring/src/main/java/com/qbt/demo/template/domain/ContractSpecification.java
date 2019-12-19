@@ -1,4 +1,4 @@
-package com.qbt.demo.repotemplate;
+package com.qbt.demo.template.domain;
 
 import com.yhhl.ebo.commom.persistence.Specification;
 

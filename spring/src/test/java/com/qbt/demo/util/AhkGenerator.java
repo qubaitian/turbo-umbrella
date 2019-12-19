@@ -1,6 +1,6 @@
 package com.qbt.demo.util;
 
-import com.qbt.demo.QbtUtil;
+import com.qbt.demo.method.PrivateUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
@@ -14,7 +14,7 @@ public class AhkGenerator {
 
     private void addSsh(String nick, String url, String name, String pw) throws Exception {
         String[] split = url.split(".");
-        QbtUtil.insertContent("C:\\work\\spring_proj\\src\\test\\java\\com\\qbt\\test\\ahk\\working.ahk", "\n", 0L);
+        PrivateUtil.insertContent("C:\\work\\spring_proj\\src\\test\\java\\com\\qbt\\test\\ahk\\working.ahk", "\n", 0L);
         AhkString("ssh" + nick, "ssh " + name + "@" + url);
         AhkString("a" + nick, url);
         AhkString("p" + nick, pw);
@@ -39,7 +39,7 @@ public class AhkGenerator {
     }
 
     private static void AhkString(String name, String content) throws Exception {
-        QbtUtil.insertContent("C:\\work\\spring_proj\\src\\test\\java\\com\\qbt\\test\\ahk\\working.ahk", "::" + name + "::" + content + "\n", 0L);
+        PrivateUtil.insertContent("C:\\work\\spring_proj\\src\\test\\java\\com\\qbt\\test\\ahk\\working.ahk", "::" + name + "::" + content + "\n", 0L);
     }
 
     private static String pGenerate(int digit) {

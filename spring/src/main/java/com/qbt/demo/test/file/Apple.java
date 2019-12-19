@@ -1,4 +1,4 @@
-package com.qbt.demo.file.test;
+package com.qbt.demo.test.file;
 
 public class Apple {
 

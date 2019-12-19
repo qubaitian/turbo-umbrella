@@ -1,5 +1,6 @@
-package com.qbt.demo.repotemplate;
+package com.qbt.demo.template.repository;
 
+import com.qbt.demo.template.domain.ContractSpecification;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

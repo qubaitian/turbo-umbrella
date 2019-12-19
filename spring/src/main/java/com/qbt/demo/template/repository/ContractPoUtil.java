@@ -1,10 +1,12 @@
-package com.qbt.demo.repotemplate;
+package com.qbt.demo.template.repository;
+
+import com.qbt.demo.template.domain.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.qbt.demo.QbtUtil.getter;
-import static com.qbt.demo.QbtUtil.setter;
+import static com.qbt.demo.method.PrivateUtil.getter;
+import static com.qbt.demo.method.PrivateUtil.setter;
 
 
 public class ContractPoUtil {

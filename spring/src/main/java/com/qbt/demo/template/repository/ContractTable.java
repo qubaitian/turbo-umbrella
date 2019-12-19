@@ -1,4 +1,4 @@
-package com.qbt.demo.repotemplate;
+package com.qbt.demo.template.repository;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

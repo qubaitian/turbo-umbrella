@@ -1,4 +1,4 @@
-package com.qbt.demo.repotemplate;
+package com.qbt.demo.template.domain;
 
 public class Contract {
 

@@ -1,7 +1,10 @@
-package com.qbt.demo.repotemplate;
+package com.qbt.demo.template.repository;
+
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qbt.demo.template.domain.Contract;
+import com.qbt.demo.template.domain.ContractSpecification;
 import com.yhhl.ebo.commom.persistence.Page;
 import com.yhhl.ebo.commom.persistence.PageRequest;
 import com.yhhl.ebo.commom.persistence.Repository;
@@ -10,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.qbt.demo.QbtUtil.setter;
+import static com.qbt.demo.method.PrivateUtil.setter;
 
 @org.springframework.stereotype.Repository
 public class ContractPoRepository implements Repository<Contract> {

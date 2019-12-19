@@ -1,5 +1,6 @@
 package com.qbt.demo.util;
 
+import com.qbt.demo.method.FileGenerator;
 import lombok.Data;
 import org.junit.Test;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.qbt.demo.QbtUtil.*;
+import static com.qbt.demo.method.PrivateUtil.*;
 
 public class MyG {
 
@@ -63,7 +64,7 @@ public class MyG {
         String fileName = from.substring(i + 1, from.length() - 5);
         fileName = fileName.replaceAll(strings.get(0), strings1.get(0));
         String s = to + "/" + fileName + ".java";
-        myCodeGenerator(from, s, pack, strings, strings1, Arrays.asList("id"), Arrays.asList(fields));
+        FileGenerator.changeAndAppend(from, s, pack, strings, strings1, Arrays.asList("id"), Arrays.asList(fields));
     }
 
     @Test
@@ -150,7 +151,7 @@ public class MyG {
         String fileName = from.substring(i + 1, from.length() - 5);
         fileName = fileName.replaceAll(strings.get(0), strings1.get(0));
         String s = to + "/" + fileName + ".java";
-        myCodeGenerator(from, s, pack, strings, strings1, position, content);
+        FileGenerator.changeAndAppend(from, s, pack, strings, strings1, position, content);
     }
 
     @Data

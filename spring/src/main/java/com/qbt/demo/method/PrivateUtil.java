@@ -1,13 +1,11 @@
-package com.qbt.demo;
+package com.qbt.demo.method;
 
 import java.io.*;
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 
-public class QbtUtil {
+public class PrivateUtil {
 
-    private static FileReader fileReader;
 
     public static Object getter(Object o, String fieldName) {
         try {
@@ -18,6 +16,7 @@ public class QbtUtil {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -74,41 +73,6 @@ public class QbtUtil {
         randomAccessFile.write(content.getBytes());
         randomAccessFile.write(suffix.toString().getBytes());
         randomAccessFile.close();
-    }
-
-
-    public static void myCodeGenerator(String from, String to, String pack, List<String> oldWord, List<String> newWord, List<String> position, List<String> content) throws Exception {
-        FileReader fileReader = new FileReader(from);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        QbtUtil.createFile(to);
-        FileWriter fileWriter = new FileWriter(to);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String s;
-        s = bufferedReader.readLine();
-        bufferedWriter.write("package " + pack + ";\n");
-        if (position != null) {
-            while ((s = bufferedReader.readLine()) != null) {
-                for (int j = 0; j < oldWord.size(); j++) {
-                    s = s.replaceAll(oldWord.get(j), newWord.get(j));
-                }
-                for (int j = 0; j < position.size(); j++) {
-                    if (s.contains(position.get(j))) {
-                        s += content.get(j);
-                        break;
-                    }
-                }
-                bufferedWriter.write(s + "\n");
-            }
-        } else {
-            while ((s = bufferedReader.readLine()) != null) {
-                for (int j = 0; j < oldWord.size(); j++) {
-                    s = s.replaceAll(oldWord.get(j), newWord.get(j));
-                }
-                bufferedWriter.write(s + "\n");
-            }
-        }
-        bufferedWriter.flush();
-        bufferedWriter.close();
     }
 
     public static String toLower(String s) {
