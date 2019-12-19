@@ -1,0 +1,8 @@
+GET http://api.goseek.cn/Tools/holiday?date=20170528
+Content-Type: application/json
+
+###
+
+GET http://api.goseek.cn/Tools/holiday?date=20170528
+
+###
