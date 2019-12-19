@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.qbt.demo.method.PrivateUtil.*;
+import static com.qbt.demo.method.WordHandler.*;
 
 public class MyG {
 

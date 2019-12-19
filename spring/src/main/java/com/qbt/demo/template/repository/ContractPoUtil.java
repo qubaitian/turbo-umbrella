@@ -1,13 +1,10 @@
 package com.qbt.demo.template.repository;
 
+import com.qbt.demo.method.SimpleReflect;
 import com.qbt.demo.template.domain.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.qbt.demo.method.PrivateUtil.getter;
-import static com.qbt.demo.method.PrivateUtil.setter;
-
 
 public class ContractPoUtil {
 
@@ -42,7 +39,7 @@ public class ContractPoUtil {
             return null;
         } else {
             ContractPo contractPo = new ContractPo();
-            contractPo.setId((Long) getter(contract, "id"));
+            contractPo.setId((Long) SimpleReflect.getter(contract, "id"));
             return contractPo;
         }
     }
@@ -52,7 +49,7 @@ public class ContractPoUtil {
             return null;
         } else {
             Contract contract = new Contract();
-            setter(contract, "id", contractPo.getId());
+            SimpleReflect.setter(contract, "id", contractPo.getId());
             return contract;
         }
     }

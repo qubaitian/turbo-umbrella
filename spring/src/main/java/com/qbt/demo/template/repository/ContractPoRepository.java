@@ -3,6 +3,7 @@ package com.qbt.demo.template.repository;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qbt.demo.method.SimpleReflect;
 import com.qbt.demo.template.domain.Contract;
 import com.qbt.demo.template.domain.ContractSpecification;
 import com.yhhl.ebo.commom.persistence.Page;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.qbt.demo.method.PrivateUtil.setter;
 
 @org.springframework.stereotype.Repository
 public class ContractPoRepository implements Repository<Contract> {
@@ -25,7 +25,7 @@ public class ContractPoRepository implements Repository<Contract> {
     public void add(Contract contract) {
         ContractPo contractPo = ContractPoUtil.toPo(contract);
         contractPoDao.add(contractPo);
-        setter(contract, "id", contractPo.getId());
+        SimpleReflect.setter(contract, "id", contractPo.getId());
     }
 
     @Override
