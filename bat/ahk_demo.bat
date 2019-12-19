@@ -1,0 +1,1 @@
+"C:\Program Files\AutoHotkey\AutoHotkey.exe" C:\work\manual\resource\ahk\demo.ahk

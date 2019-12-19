@@ -1,2 +1,1 @@
-cd /d C:\Program Files\AutoHotkey
-AutoHotkey.exe ..\..\work\private\working.ahk
+ "C:\Program Files\AutoHotkey\AutoHotkey.exe" C:\work\private\working.ahk
