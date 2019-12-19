@@ -22,12 +22,8 @@
   </action>
   <action id="GotoChangedFile" />
   <action id="GotoClass" />
-  <action id="Terminal.MoveToEditor">
-    <keyboard-shortcut first-keystroke="ctrl n" />
-  </action>
-  <action id="Terminal.RenameSession">
-    <keyboard-shortcut first-keystroke="alt n" />
-  </action>
+  <action id="Terminal.MoveToolWindowTabLeft" />
+  <action id="Terminal.MoveToolWindowTabRight" />
   <action id="Terminal.SwitchFocusToEditor" />
   <action id="TodoViewGroupByShowModules" />
   <action id="UpdateRunningApplication" />
