@@ -3,7 +3,11 @@ package com.qbt.demo.method;
 import java.io.*;
 import java.util.List;
 
+
 public class FileGenerator {
+
+    private static String tempDir = "C:\\temp";
+    private static String tempFile = "C:\\temp\\temp";
 
     public static void createDir(String pack) {
         File myPath = new File(pack);
@@ -40,6 +44,38 @@ public class FileGenerator {
         bufferedWriter.close();
     }
 
+    public static void update(String fileName, List<Term> terms) throws Exception {
+        change(fileName, tempFile, terms);
+        change(tempFile, fileName, null);
+    }
+
+    public static void change(String from, String to, List<Term> terms) throws Exception {
+        FileReader fileReader = new FileReader(from);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        createFile(to);
+        FileWriter fileWriter = new FileWriter(to);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String s;
+        if (terms != null) {
+            while ((s = bufferedReader.readLine()) != null) {
+                for (Term term : terms) {
+                    if (term.getWhere() == null) {
+                        s = s.replaceAll(term.getOldWord(), term.getNewWord());
+                    } else {
+                        if (s.contains(term.getNewWord())) {
+                            s = s.replaceAll(term.getOldWord(), term.getNewWord());
+                        }
+                    }
+                }
+                bufferedWriter.write(s + "\n");
+            }
+        } else {
+            while ((s = bufferedReader.readLine()) != null) {
+                bufferedWriter.write(s + "\n");
+            }
+        }
+    }
+
     public static void change(String from, String to, List<String> oldWords, List<String> newWords) throws Exception {
         FileReader fileReader = new FileReader(from);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -51,8 +87,8 @@ public class FileGenerator {
             while ((s = bufferedReader.readLine()) != null) {
                 for (int j = 0; j < oldWords.size(); j++) {
                     s = s.replaceAll(oldWords.get(j), newWords.get(j));
-                    bufferedWriter.write(s + "\n");
                 }
+                bufferedWriter.write(s + "\n");
             }
         } else {
             while ((s = bufferedReader.readLine()) != null) {
@@ -75,7 +111,7 @@ public class FileGenerator {
         if (tags != null) {
             while ((s = bufferedReader.readLine()) != null) {
                 for (int j = 0; j < tags.size(); j++) {
-                    s+=contents.get(j);
+                    s += contents.get(j);
                     bufferedWriter.write(s + "\n");
                 }
             }

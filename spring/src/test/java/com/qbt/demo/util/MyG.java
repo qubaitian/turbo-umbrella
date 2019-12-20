@@ -15,19 +15,23 @@ public class MyG {
     String here = "C:\\repo\\work\\spring_test\\src\\main\\java\\com\\qbt\\test\\testTemplate";
     String hPack = "com.qbt.test.testTemplate";
 
-    String from = "C:\\repo\\work\\spring_test\\src\\main\\java\\com\\qbt\\test\\repotemplate";
+    String from = "C:\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\preset\\repository";
 
-    String there = "C:\\repo\\work\\spring_test\\src\\main\\java\\com\\qbt\\test\\testTemplate";
-    String tPack = "com.qbt.test.testTemplate";
+    String there = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template\\repo1";
+    String tPack = "com.qbt.demo.template.repo1";
 
-    String old = "Contract";
+    String old = "PresetContract";
     String now = "Apple";
 
     String fields = "\n" +
-            "    private String code;\n" +
-            "    private String label;\n" +
-            "    private Integer def;\n" +
-            "    private String extData;";
+            "";
+
+    @Data
+    static
+    private class TypeListAndNameList {
+        List<String> typeList = new ArrayList<>();
+        List<String> nameList = new ArrayList<>();
+    }
 
     TypeListAndNameList typeListAndNameList = getTypeListAndNameList(fields);
     String to = "";
@@ -152,13 +156,6 @@ public class MyG {
         fileName = fileName.replaceAll(strings.get(0), strings1.get(0));
         String s = to + "/" + fileName + ".java";
         FileGenerator.changeAndAppend(from, s, pack, strings, strings1, position, content);
-    }
-
-    @Data
-    static
-    class TypeListAndNameList {
-        List<String> typeList = new ArrayList<>();
-        List<String> nameList = new ArrayList<>();
     }
 
 }

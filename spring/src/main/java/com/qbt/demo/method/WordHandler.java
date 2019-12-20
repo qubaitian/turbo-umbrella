@@ -1,6 +1,7 @@
 package com.qbt.demo.method;
 
 public class WordHandler {
+
     public static String toLower(String s) {
         char c = s.charAt(0);
         return Character.toLowerCase(c) + s.substring(1);
