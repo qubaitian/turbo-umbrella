@@ -9,12 +9,15 @@
     <keyboard-shortcut first-keystroke="alt t" />
   </action>
   <action id="ChangesView.GroupBy.Module" />
+  <action id="ChooseDebugConfiguration" />
+  <action id="ChooseRunConfiguration" />
   <action id="CloseActiveTab">
     <keyboard-shortcut first-keystroke="shift ctrl alt up" />
   </action>
   <action id="CloseAllEditorsButActive">
     <keyboard-shortcut first-keystroke="alt c" />
   </action>
+  <action id="Debug" />
   <action id="ExtractFunction" />
   <action id="ExtractMethod" />
   <action id="FileChooser.NewFolder">
@@ -22,6 +25,7 @@
   </action>
   <action id="GotoChangedFile" />
   <action id="GotoClass" />
+  <action id="Run" />
   <action id="Terminal.MoveToolWindowTabLeft" />
   <action id="Terminal.MoveToolWindowTabRight" />
   <action id="Terminal.SwitchFocusToEditor" />
@@ -30,10 +34,4 @@
   <action id="Vcs.ToggleAmendCommitMode" />
   <action id="Vcs.UpdateProject" />
   <action id="VcsShowPrevChangeMarker" />
-  <action id="android.deploy.ApplyChanges">
-    <keyboard-shortcut first-keystroke="ctrl f10" />
-  </action>
-  <action id="android.deploy.CodeSwap">
-    <keyboard-shortcut first-keystroke="ctrl alt f10" />
-  </action>
 </keymap>
