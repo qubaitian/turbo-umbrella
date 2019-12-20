@@ -74,6 +74,8 @@ public class FileGenerator {
                 bufferedWriter.write(s + "\n");
             }
         }
+        bufferedWriter.flush();
+        bufferedWriter.close();
     }
 
     public static void change(String from, String to, List<String> oldWords, List<String> newWords) throws Exception {

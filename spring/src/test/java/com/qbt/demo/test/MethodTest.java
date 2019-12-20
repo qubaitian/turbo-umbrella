@@ -10,11 +10,14 @@ import java.util.List;
 public class MethodTest {
 
     @Test
-    public void name() {
-        String fileName="C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template\\repository\\ContractPoDao.java";
+    public void name() throws Exception {
+        String fileName="com.qbt.demo.template.repository.ContractPo";
         List<Term> list=new ArrayList<>();
-
-//        list.add();
-//        FileGenerator.update(fileName,);
+        Term term = new Term();
+        term.setWhere("pac");
+        term.setOldWord("com");
+        term.setNewWord("priv");
+        list.add(term);
+        FileGenerator.update(fileName,list);
     }
 }
