@@ -1,9 +1,4 @@
 <templateSet group="qbt">
-  <template name="asdf" value="asdfqwer" description="" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="JAVA_CODE" value="true" />
-    </context>
-  </template>
   <template name="rt" value="@Autowired&#10;Repository&lt;$Name$&gt; $name$Repository;&#10;&#10;@Test&#10;public void test$Name$Repository() throws Exception {&#10;    $name$Repository.add(new $Name$());&#10;    $Name$ $name$ = new $Name$();&#10;    $name$Repository.add($name$);&#10;    $name$Repository.add(new $Name$());&#10;    Long id = (Long) getter($name$, &quot;id&quot;);&#10;    $Name$ $name$1 = $name$Repository.findById(id);&#10;    toStr($name$1);&#10;    $name$Repository.delete($name$1);&#10;    $Name$ $name$2 = $name$Repository.findById(id);&#10;    toStr($name$2);&#10;    List&lt;$Name$&gt; all = $name$Repository.findAll(null);&#10;    for ($Name$ $name$3 : all) {&#10;        toStr($name$3);&#10;    }&#10;}" description="repository 简单测试" toReformat="true" toShortenFQNames="true">
     <variable name="Name" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="name" expression="decapitalize(Name)" defaultValue="" alwaysStopAt="true" />
@@ -23,6 +18,12 @@
     <variable name="url" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="time" expression="date(&quot;HHmmss&quot;)" defaultValue="" alwaysStopAt="false" />
     <variable name="answer" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="psv" value="public static void $name$(){&#10;    $END$&#10;}" description="public static void" toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="JAVA_CODE" value="true" />
     </context>

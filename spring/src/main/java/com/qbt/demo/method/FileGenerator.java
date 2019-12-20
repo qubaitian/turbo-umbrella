@@ -1,5 +1,8 @@
 package com.qbt.demo.method;
 
+
+import org.springframework.util.StringUtils;
+
 import java.io.*;
 import java.util.List;
 
@@ -59,10 +62,10 @@ public class FileGenerator {
         if (terms != null) {
             while ((s = bufferedReader.readLine()) != null) {
                 for (Term term : terms) {
-                    if (term.getWhere() == null) {
+                    if (StringUtils.hasText(term.getWhere())) {
                         s = s.replaceAll(term.getOldWord(), term.getNewWord());
                     } else {
-                        if (s.contains(term.getNewWord())) {
+                        if (s.contains(term.getOldWord())) {
                             s = s.replaceAll(term.getOldWord(), term.getNewWord());
                         }
                     }
