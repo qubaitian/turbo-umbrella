@@ -1,6 +1,8 @@
 package com.qbt.demo.util;
 
 import com.qbt.demo.method.FileGenerator;
+import com.qbt.demo.method.Term;
+import com.qbt.demo.method.WordHandler;
 import lombok.Data;
 import org.junit.Test;
 
@@ -12,30 +14,32 @@ import static com.qbt.demo.method.WordHandler.*;
 
 public class MyG {
 
-    String here = "C:\\repo\\work\\spring_test\\src\\main\\java\\com\\qbt\\test\\testTemplate";
-    String hPack = "com.qbt.test.testTemplate";
+    String here = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\test";
+    String hPack = "com.qbt.demo.test";
 
-    String from = "C:\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\preset\\repository";
+    String from = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template";
+    String fPack = "com.qbt.demo.template";
 
-    String there = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template\\repo1";
-    String tPack = "com.qbt.demo.template.repo1";
+    String there = "C:\\work\\manual\\spring\\src\\test\\java\\com\\qbt\\demo\\test";
+    String tPack = "com.qbt.demo.test";
 
-    String old = "PresetContract";
+    String old = "Contract";
     String now = "Apple";
 
     String fields = "\n" +
             "";
 
+    String to = "";
+    String pack = "";
+
     @Data
-    static
     private class TypeListAndNameList {
         List<String> typeList = new ArrayList<>();
         List<String> nameList = new ArrayList<>();
     }
 
     TypeListAndNameList typeListAndNameList = getTypeListAndNameList(fields);
-    String to = "";
-    String pack = "";
+
 
     @Test
     public void createHere() throws Exception {
@@ -61,14 +65,49 @@ public class MyG {
     }
 
     @Test
+    public void testCreate() throws Exception {
+        int lastIndexOf = from.lastIndexOf("\\");
+        String fileName = from.substring(lastIndexOf + 1, from.length() - 5);
+        fileName = fileName.replaceAll(old, now);
+        FileGenerator.createFile(to + "\\" + fileName + ".java");
+    }
+
+    String obj = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template\\Contract.java";
+
+    @Test
     public void createObj() throws Exception {
-        List<String> strings = Arrays.asList(old, toLower(old));
-        List<String> strings1 = Arrays.asList(now, toLower(now));
-        int i = from.lastIndexOf("\\");
-        String fileName = from.substring(i + 1, from.length() - 5);
-        fileName = fileName.replaceAll(strings.get(0), strings1.get(0));
-        String s = to + "/" + fileName + ".java";
-        FileGenerator.changeAndAppend(from, s, pack, strings, strings1, Arrays.asList("id"), Arrays.asList(fields));
+
+        List<Term> terms = new ArrayList<>();
+
+        terms.add(new Term(
+                        null,
+                        old,
+                        now
+                )
+        );
+
+        terms.add(new Term(
+                        null,
+                        WordHandler.toLower(old),
+                        WordHandler.toLower(now)
+                )
+        );
+
+        terms.add(new Term(
+                "pack",
+                fPack,
+                tPack
+        ));
+
+        int lastIndexOf = obj.lastIndexOf("\\");
+        String fileName = obj.substring(lastIndexOf + 1, obj.length() - 5);
+        fileName = fileName.replaceAll(old, now);
+        FileGenerator.updateAndCreate(
+                obj,
+                there + "\\" + fileName + ".java",
+                terms
+        );
+
     }
 
     @Test
@@ -123,6 +162,8 @@ public class MyG {
     public static void simpleChange(String from, String to, String pack, String old, String now) throws Exception {
         fileToPackageChangeOneWord(from, to, pack, old, now, null, null);
     }
+
+
 
     TypeListAndNameList getTypeListAndNameList(String fields) {
         String[] split = fields.split("[^A-z]");

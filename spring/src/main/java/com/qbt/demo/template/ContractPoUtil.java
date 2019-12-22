@@ -1,12 +1,14 @@
-package com.qbt.demo.template.repository;
+package com.qbt.demo.template;
 
 import com.qbt.demo.method.SimpleReflect;
-import com.qbt.demo.template.domain.Contract;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ContractPoUtil {
+    /*autowired*/
 
     public static List<ContractPo> toPoList(List<Contract> list) {
         if (list == null) {
@@ -14,7 +16,7 @@ public class ContractPoUtil {
         } else {
             List<ContractPo> result = new ArrayList<>();
             for (Contract contract : list) {
-                ContractPo contractPo = ContractPoUtil.toPo(contract);
+                ContractPo contractPo = toPo(contract);
                 result.add(contractPo);
             }
             return result;
@@ -27,7 +29,7 @@ public class ContractPoUtil {
         } else {
             List<Contract> result = new ArrayList<>();
             for (ContractPo contractPo : list) {
-                Contract contract = ContractPoUtil.toEntity(contractPo);
+                Contract contract = toEntity(contractPo);
                 result.add(contract);
             }
             return result;
@@ -40,6 +42,8 @@ public class ContractPoUtil {
         } else {
             ContractPo contractPo = new ContractPo();
             contractPo.setId((Long) SimpleReflect.getter(contract, "id"));
+            /*setPoField*/
+            /*setPoMember*/
             return contractPo;
         }
     }
@@ -50,6 +54,8 @@ public class ContractPoUtil {
         } else {
             Contract contract = new Contract();
             SimpleReflect.setter(contract, "id", contractPo.getId());
+            /*setField*/
+            /*setMember*/
             return contract;
         }
     }

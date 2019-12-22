@@ -1,11 +1,9 @@
-package com.qbt.demo.template.repository;
+package com.qbt.demo.template;
 
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qbt.demo.method.SimpleReflect;
-import com.qbt.demo.template.domain.Contract;
-import com.qbt.demo.template.domain.ContractSpecification;
 import com.yhhl.ebo.commom.persistence.Page;
 import com.yhhl.ebo.commom.persistence.PageRequest;
 import com.yhhl.ebo.commom.persistence.Repository;

@@ -1,11 +1,9 @@
 package com.qbt.demo.method;
 
-
 import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.util.List;
-
 
 public class FileGenerator {
 
@@ -28,31 +26,42 @@ public class FileGenerator {
         }
     }
 
-    public static void append(String fileName, String where, String contend) throws Exception {
-        FileReader fileReader = new FileReader(fileName);
+    public static void append(String fileName, List<Term> terms) throws Exception {
+        appendAndCreate(fileName, tempFile, terms);
+        appendAndCreate(tempFile, fileName, null);
+    }
+
+    public static void appendAndCreate(String from, String to, List<Term> terms) throws Exception {
+        FileReader fileReader = new FileReader(from);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        int i = fileName.lastIndexOf("\\");
-        String temp = fileName.substring(0, i) + "\\temp";
-        FileGenerator.createFile(temp);
-        FileWriter fileWriter = new FileWriter(temp);
+        createFile(to);
+        FileWriter fileWriter = new FileWriter(to);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         String s;
-        while ((s = bufferedReader.readLine()) != null) {
-            if (s.contains(where)) {
-                s += contend;
+        if (terms != null) {
+            while ((s = bufferedReader.readLine()) != null) {
+                for (Term term : terms) {
+                    if (s.contains(term.getWhere())) {
+                        s+=term.getContent();
+                    }
+                }
+                bufferedWriter.write(s + "\n");
             }
-            bufferedWriter.write(s + "\n");
+        } else {
+            while ((s = bufferedReader.readLine()) != null) {
+                bufferedWriter.write(s + "\n");
+            }
         }
         bufferedWriter.flush();
         bufferedWriter.close();
     }
 
     public static void update(String fileName, List<Term> terms) throws Exception {
-        change(fileName, tempFile, terms);
-        change(tempFile, fileName, null);
+        updateAndCreate(fileName, tempFile, terms);
+        updateAndCreate(tempFile, fileName, null);
     }
 
-    public static void change(String from, String to, List<Term> terms) throws Exception {
+    public static void updateAndCreate(String from, String to, List<Term> terms) throws Exception {
         FileReader fileReader = new FileReader(from);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         createFile(to);
@@ -75,56 +84,6 @@ public class FileGenerator {
         } else {
             while ((s = bufferedReader.readLine()) != null) {
                 bufferedWriter.write(s + "\n");
-            }
-        }
-        bufferedWriter.flush();
-        bufferedWriter.close();
-    }
-
-    public static void change(String from, String to, List<String> oldWords, List<String> newWords) throws Exception {
-        FileReader fileReader = new FileReader(from);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        createFile(to);
-        FileWriter fileWriter = new FileWriter(to);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String s;
-        if (oldWords != null) {
-            while ((s = bufferedReader.readLine()) != null) {
-                for (int j = 0; j < oldWords.size(); j++) {
-                    s = s.replaceAll(oldWords.get(j), newWords.get(j));
-                }
-                bufferedWriter.write(s + "\n");
-            }
-        } else {
-            while ((s = bufferedReader.readLine()) != null) {
-                for (int j = 0; j < oldWords.size(); j++) {
-                    bufferedWriter.write(s + "\n");
-                }
-            }
-        }
-        bufferedWriter.flush();
-        bufferedWriter.close();
-    }
-
-    public static void append(String from, String to, List<String> tags, List<String> contents) throws Exception {
-        FileReader fileReader = new FileReader(from);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        createFile(to);
-        FileWriter fileWriter = new FileWriter(to);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String s;
-        if (tags != null) {
-            while ((s = bufferedReader.readLine()) != null) {
-                for (int j = 0; j < tags.size(); j++) {
-                    s += contents.get(j);
-                    bufferedWriter.write(s + "\n");
-                }
-            }
-        } else {
-            while ((s = bufferedReader.readLine()) != null) {
-                for (int j = 0; j < tags.size(); j++) {
-                    bufferedWriter.write(s + "\n");
-                }
             }
         }
         bufferedWriter.flush();

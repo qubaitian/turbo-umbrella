@@ -1,14 +1,14 @@
-package com.qbt.demo.template.repository;
+package com.qbt.demo.file;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity(name = "contract")
+@Entity(name = "apple")
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ContractTable {
+public class AppleTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

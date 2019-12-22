@@ -1,6 +1,5 @@
-package com.qbt.demo.template.repository;/*adf*/
+package com.qbt.demo.template;/*adf*/
 
-import com.qbt.demo.template.domain.ContractSpecification;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -8,15 +7,20 @@ import java.util.List;
 @Mapper
 public interface ContractPoDao {
 
-    @Insert("INSERT INTO table(dr" +
+    String table = "contract";
+
+    @Insert("INSERT INTO " + table + "(dr" +
+            /*InsertField*/
             ") " +
             "VALUES(0" +
+            /*InsertValue*/
             ")")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void add(ContractPo contractPo);
 
-    @Update("UPDATE table " +
+    @Update("UPDATE " + table + " " +
             "SET " +
+            /*UpdateExp*/
             "dr = 0 " +
             "WHERE id = #{id}")
     void update(ContractPo contractPo);
@@ -26,7 +30,8 @@ public interface ContractPoDao {
 
     @Select("<script>" +
             " select id " +
-            " from table " +
+            /*SelectFieldAndAlias*/
+            " from " + table + " " +
             " where dr = 0 " +
             " And id = #{id} " +
             " </script>")
@@ -34,7 +39,8 @@ public interface ContractPoDao {
 
     @Select("<script>" +
             " select id " +
-            " from table " +
+            /*SelectFieldAndAlias*/
+            " from " + table + " " +
             " where dr = 0 " +
 //            "<if test=' != null'>AND  = #{}</if>" +
 //            "<if test=' != null'>AND  like #{}</if>" +
