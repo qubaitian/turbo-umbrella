@@ -1,5 +1,6 @@
 package com.qbt.demo.file;
 
+/*begin*/
 public class Bear {
 
     private Long id;
@@ -14,7 +15,7 @@ public class Bear {
 
     /*members*/
 
-
+    /*begin*/
 
 
 }
