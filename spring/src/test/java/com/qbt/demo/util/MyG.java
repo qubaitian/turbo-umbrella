@@ -1,6 +1,5 @@
 package com.qbt.demo.util;
 
-import com.qbt.demo.method.FileGenerator;
 import com.qbt.demo.method.Term;
 import com.qbt.demo.method.WordHandler;
 import lombok.Data;
@@ -13,9 +12,6 @@ import java.util.List;
 import static com.qbt.demo.method.WordHandler.*;
 
 public class MyG {
-
-    String here = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\test";
-    String hPack = "com.qbt.demo.test";
 
     String from = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template";
     String fPack = "com.qbt.demo.template";
@@ -31,90 +27,8 @@ public class MyG {
 
     String to = "";
     String pack = "";
-
-    @Data
-    private class TypeListAndNameList {
-        List<String> typeList = new ArrayList<>();
-        List<String> nameList = new ArrayList<>();
-    }
-
     TypeListAndNameList typeListAndNameList = getTypeListAndNameList(fields);
-
-
-    @Test
-    public void createHere() throws Exception {
-        to = here;
-        pack = hPack;
-        createObj();
-        createPo();
-        createDao();
-        createTable();
-        createPoRepository();
-        createUtil();
-        createSpecification();
-    }
-
-    @Test
-    public void createThere() throws Exception {
-        to = there;
-        pack = tPack;
-        createPo();
-        createDao();
-        createPoRepository();
-        createUtil();
-    }
-
-    @Test
-    public void testCreate() throws Exception {
-        int lastIndexOf = from.lastIndexOf("\\");
-        String fileName = from.substring(lastIndexOf + 1, from.length() - 5);
-        fileName = fileName.replaceAll(old, now);
-        FileGenerator.createFile(to + "\\" + fileName + ".java");
-    }
-
     String obj = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template\\Contract.java";
-
-    @Test
-    public void createObj() throws Exception {
-
-        List<Term> terms = new ArrayList<>();
-
-        terms.add(new Term(
-                        null,
-                        old,
-                        now
-                )
-        );
-
-        terms.add(new Term(
-                        null,
-                        WordHandler.toLower(old),
-                        WordHandler.toLower(now)
-                )
-        );
-
-        terms.add(new Term(
-                "pack",
-                fPack,
-                tPack
-        ));
-
-        int lastIndexOf = obj.lastIndexOf("\\");
-        String fileName = obj.substring(lastIndexOf + 1, obj.length() - 5);
-        fileName = fileName.replaceAll(old, now);
-        FileGenerator.updateAndCreate(
-                obj,
-                there + "\\" + fileName + ".java",
-                terms
-        );
-
-    }
-
-    @Test
-    public void createTable() throws Exception {
-        fileToPackageChangeOneWord(from + "\\" + old + "Table.java", to, pack, old, now, Arrays.asList("id"), Arrays.asList(fields));
-    }
-
 
     @Test
     public void createDao() throws Exception {
@@ -132,6 +46,70 @@ public class MyG {
     }
 
     @Test
+    public void createObj() throws Exception {
+
+        List<Term> terms = new ArrayList<>();
+        terms.add(new Term(
+                        null,
+                        old,
+                        now
+                )
+        );
+        terms.add(new Term(
+                        null,
+                        WordHandler.toLower(old),
+                        WordHandler.toLower(now)
+                )
+        );
+
+        terms.add(new Term(
+                "pack",
+                fPack,
+                tPack
+        ));
+
+        int lastIndexOf = obj.lastIndexOf("\\");
+        String fileName = obj.substring(lastIndexOf + 1, obj.length() - 5);
+        fileName = fileName.replaceAll(old, now);
+//        FileGenerator.updateAndCreate(
+//                obj,
+//                there + "\\" + fileName + ".java",
+//                terms
+//        );
+
+    }
+
+    @Test
+    public void createPo() throws Exception {
+        fileToPackageChangeOneWord(from + "\\" + old + "Po.java", to, pack, old, now, Arrays.asList("id"), Arrays.asList(fields));
+    }
+
+    @Test
+    public void createPoRepository() throws Exception {
+        simpleChange(from + "\\" + old + "PoRepository.java", to, pack, old, now);
+    }
+
+    @Test
+    public void createSpecification() throws Exception {
+        simpleChange(from + "\\" + old + "Specification.java", to, pack, old, now);
+    }
+
+    @Test
+    public void createTable() throws Exception {
+        fileToPackageChangeOneWord(from + "\\" + old + "Table.java", to, pack, old, now, Arrays.asList("id"), Arrays.asList(fields));
+    }
+
+    @Test
+    public void createThere() throws Exception {
+        to = there;
+        pack = tPack;
+        createPo();
+        createDao();
+        createPoRepository();
+        createUtil();
+    }
+
+    @Test
     public void createUtil() throws Exception {
         String getStr = "";
         for (int i = 0; i < typeListAndNameList.getTypeList().size(); i++) {
@@ -144,26 +122,15 @@ public class MyG {
         fileToPackageChangeOneWord(from + "\\" + old + "PoUtil.java", to, pack, old, now, Arrays.asList("setId", "getId"), Arrays.asList(getStr, setStr));
     }
 
-    @Test
-    public void createPo() throws Exception {
-        fileToPackageChangeOneWord(from + "\\" + old + "Po.java", to, pack, old, now, Arrays.asList("id"), Arrays.asList(fields));
+    public static void fileToPackageChangeOneWord(String from, String to, String pack, String old, String now, List<String> position, List<String> content) throws Exception {
+        List<String> strings = Arrays.asList(old, toLower(old));
+        List<String> strings1 = Arrays.asList(now, toLower(now));
+        int i = from.lastIndexOf("\\");
+        String fileName = from.substring(i + 1, from.length() - 5);
+        fileName = fileName.replaceAll(strings.get(0), strings1.get(0));
+        String s = to + "/" + fileName + ".java";
+//        FileGenerator.changeAndAppend(from, s, pack, strings, strings1, position, content);
     }
-
-    @Test
-    public void createSpecification() throws Exception {
-        simpleChange(from + "\\" + old + "Specification.java", to, pack, old, now);
-    }
-
-    @Test
-    public void createPoRepository() throws Exception {
-        simpleChange(from + "\\" + old + "PoRepository.java", to, pack, old, now);
-    }
-
-    public static void simpleChange(String from, String to, String pack, String old, String now) throws Exception {
-        fileToPackageChangeOneWord(from, to, pack, old, now, null, null);
-    }
-
-
 
     TypeListAndNameList getTypeListAndNameList(String fields) {
         String[] split = fields.split("[^A-z]");
@@ -189,14 +156,14 @@ public class MyG {
         return typeListAndNameList;
     }
 
-    public static void fileToPackageChangeOneWord(String from, String to, String pack, String old, String now, List<String> position, List<String> content) throws Exception {
-        List<String> strings = Arrays.asList(old, toLower(old));
-        List<String> strings1 = Arrays.asList(now, toLower(now));
-        int i = from.lastIndexOf("\\");
-        String fileName = from.substring(i + 1, from.length() - 5);
-        fileName = fileName.replaceAll(strings.get(0), strings1.get(0));
-        String s = to + "/" + fileName + ".java";
-        FileGenerator.changeAndAppend(from, s, pack, strings, strings1, position, content);
+    public static void simpleChange(String from, String to, String pack, String old, String now) throws Exception {
+        fileToPackageChangeOneWord(from, to, pack, old, now, null, null);
+    }
+
+    @Data
+    private class TypeListAndNameList {
+        List<String> typeList = new ArrayList<>();
+        List<String> nameList = new ArrayList<>();
     }
 
 }
