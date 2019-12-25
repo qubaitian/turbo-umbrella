@@ -1,12 +1,12 @@
-package com.qbt.demo.template;
+package com.qbt.test.template;
 
-public class Contract {
+public class TemplateEntity {
 
     private Long id;
     private Integer dr;
 
     /*fields*/
-    /*7777*/
+
     /*members*/
 
 }

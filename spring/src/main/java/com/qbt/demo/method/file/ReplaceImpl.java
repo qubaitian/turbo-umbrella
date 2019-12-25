@@ -1,6 +1,5 @@
 package com.qbt.demo.method.file;
 
-import com.qbt.demo.method.Term;
 import org.springframework.util.StringUtils;
 
 import java.util.List;

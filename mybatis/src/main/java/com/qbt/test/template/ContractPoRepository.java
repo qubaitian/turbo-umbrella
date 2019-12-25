@@ -1,9 +1,9 @@
-package com.qbt.demo.template;
+package com.qbt.test.template;
 
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.qbt.demo.method.SimpleReflect;
+import com.qbt.test.mock.SimpleReflect;
 import com.yhhl.ebo.commom.persistence.Page;
 import com.yhhl.ebo.commom.persistence.PageRequest;
 import com.yhhl.ebo.commom.persistence.Repository;
@@ -14,45 +14,45 @@ import java.util.List;
 
 
 @org.springframework.stereotype.Repository
-public class ContractPoRepository implements Repository<Contract> {
+public class ContractPoRepository implements Repository<TemplateEntity> {
 
     @Autowired
     private ContractPoDao contractPoDao;
 
     @Override
-    public void add(Contract contract) {
-        ContractPo contractPo = ContractPoUtil.toPo(contract);
+    public void add(TemplateEntity templateEntity) {
+        ContractPo contractPo = ContractPoUtil.toPo(templateEntity);
         contractPoDao.add(contractPo);
-        SimpleReflect.setter(contract, "id", contractPo.getId());
+        SimpleReflect.setter(templateEntity, "id", contractPo.getId());
     }
 
     @Override
-    public void update(Contract contract) {
-        ContractPo contractPo = ContractPoUtil.toPo(contract);
+    public void update(TemplateEntity templateEntity) {
+        ContractPo contractPo = ContractPoUtil.toPo(templateEntity);
         contractPoDao.update(contractPo);
     }
 
     @Override
-    public void delete(Contract contract) {
-        ContractPo contractPo = ContractPoUtil.toPo(contract);
+    public void delete(TemplateEntity templateEntity) {
+        ContractPo contractPo = ContractPoUtil.toPo(templateEntity);
         contractPoDao.delete(contractPo);
     }
 
     @Override
-    public Contract findById(Long id) {
+    public TemplateEntity findById(Long id) {
         ContractPo contractPo = contractPoDao.findById(id);
-        Contract contract = ContractPoUtil.toEntity(contractPo);
-        return contract;
+        TemplateEntity templateEntity = ContractPoUtil.toEntity(contractPo);
+        return templateEntity;
     }
 
     @Override
-    public List<Contract> findAll(Specification specification) {
+    public List<TemplateEntity> findAll(Specification specification) {
         List<ContractPo> list = contractPoDao.findAll((ContractSpecification) specification);
         return ContractPoUtil.toEntityList(list);
     }
 
     @Override
-    public Page<Contract> findAll(Specification specification, PageRequest pageRequest) {
+    public Page<TemplateEntity> findAll(Specification specification, PageRequest pageRequest) {
         PageHelper.startPage(pageRequest.pageNumber(), pageRequest.pageSize());
         List<ContractPo> list = contractPoDao.findAll((ContractSpecification) specification);
         PageInfo<ContractPo> pageInfo = new PageInfo<>(list);

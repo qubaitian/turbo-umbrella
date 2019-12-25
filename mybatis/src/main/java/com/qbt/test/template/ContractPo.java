@@ -1,4 +1,4 @@
-package com.qbt.demo.template;
+package com.qbt.test.template;
 
 import lombok.Data;
 

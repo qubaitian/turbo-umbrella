@@ -1,7 +1,7 @@
 //package com.qbt.demo.util;
 //
-//import com.qbt.demo.method.Term;
-//import com.qbt.demo.method.WordHandler;
+//import com.qbt.demo.method.file.Term;
+//import com.qbt.demo.method.file.WordHandler;
 //import lombok.Data;
 //import org.junit.Test;
 //
@@ -9,7 +9,7 @@
 //import java.util.Arrays;
 //import java.util.List;
 //
-//import static com.qbt.demo.method.WordHandler.*;
+//import static com.qbt.demo.method.file.WordHandler.*;
 //
 //public class MyG {
 //

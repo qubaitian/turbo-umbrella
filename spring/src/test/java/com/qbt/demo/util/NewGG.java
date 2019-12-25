@@ -1,7 +1,7 @@
 //package com.qbt.demo.util;
 //
 //import com.qbt.demo.method.FileGenerator;
-//import com.qbt.demo.method.Term;
+//import com.qbt.demo.method.file.Term;
 //import org.junit.Test;
 //
 //import java.util.ArrayList;

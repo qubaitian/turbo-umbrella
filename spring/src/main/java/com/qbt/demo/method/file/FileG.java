@@ -1,8 +1,4 @@
-package com.qbt.demo.method;
-
-import com.qbt.demo.method.file.AppendImpl;
-import com.qbt.demo.method.file.CodeGenerator;
-import com.qbt.demo.method.file.ReplaceImpl;
+package com.qbt.demo.method.file;
 
 import java.util.List;
 

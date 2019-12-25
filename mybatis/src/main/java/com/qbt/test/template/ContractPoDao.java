@@ -1,4 +1,4 @@
-package com.qbt.demo.template;/*adf*/
+package com.qbt.test.template;/*adf*/
 
 import org.apache.ibatis.annotations.*;
 

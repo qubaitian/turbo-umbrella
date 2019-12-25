@@ -1,8 +1,8 @@
 package com.qbt.demo.util;
 
-import com.qbt.demo.method.FileG;
-import com.qbt.demo.method.Term;
-import com.qbt.demo.method.WordHandler;
+import com.qbt.demo.method.file.FileG;
+import com.qbt.demo.method.file.Term;
+import com.qbt.demo.method.file.WordHandler;
 import lombok.Data;
 import org.junit.Test;
 import org.springframework.util.StringUtils;
@@ -15,9 +15,9 @@ public class NewG {
     private static List<Field> fieldList;
     private static List<Member> memberList;
 
-    String from = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template";
+    String here = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template";
     String there = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\test";
-    String old = "Contract";
+    String old = "TemplateEntity";
     String now = "Bear";
     String fPack = "com.qbt.demo.template";
     String tPack = "com.qbt.demo.test";
@@ -27,40 +27,34 @@ public class NewG {
     String members = "\n" +
             "    private Bear bear;\n" +
             "    private List<Bear> bears;";
-    List<Term> packAndUpAndLow = new ArrayList<>();
+    List<Term> upAndLow = new ArrayList<>();
 
     {
         solveField();
         solveMember();
-
-        packAndUpAndLow.add(new Term(
-                        null,
-                        old,
-                        now
-                )
-        );
-
-        packAndUpAndLow.add(new Term(
-                        null,
-                        WordHandler.toLower(old),
-                        WordHandler.toLower(now)
-                )
-        );
-
-        packAndUpAndLow.add(new Term(
-                "pack",
-                fPack,
-                tPack
-        ));
+        upAndLow.add(new Term(
+                null,
+                old,
+                now));
+        upAndLow.add(new Term(
+                null,
+                WordHandler.toLower(old),
+                WordHandler.toLower(now)));
+        upAndLow.add(new Term(
+                "/*table*/",
+                "template_entity",
+                WordHandler.camelToUnderline(now)));
     }
 
     /*entity*/
     @Test
     public void createEntity() throws Exception {
+        String entity = here + "\\" + old + ".java";
+        String entityTo = there + "\\" + now + ".java";
         FileG.replace(
-                from + "\\" + old + ".java",
-                there + "\\" + now + ".java",
-                packAndUpAndLow
+                entity,
+                entityTo,
+                upAndLow
         );
         List<Term> terms = new ArrayList<>();
         terms.add(new Term(
@@ -72,7 +66,7 @@ public class NewG {
                 members
         ));
         FileG.append(
-                there + "\\" + now + ".java",
+                entityTo,
                 terms
         );
     }
@@ -81,17 +75,15 @@ public class NewG {
     @Test
     public void createPo() throws Exception {
         FileG.replace(
-                from + "\\" + old + "Po.java",
+                here + "\\" + old + "Po.java",
                 there + "\\" + now + "Po.java",
-                packAndUpAndLow
+                upAndLow
         );
-
         List<Term> terms = new ArrayList<>();
         terms.add(new Term(
                 "/*fields*/",
                 fields
         ));
-
         String content = "";
         if (memberList != null) {
             for (Member member : memberList) {
@@ -102,16 +94,19 @@ public class NewG {
                 "/*members*/",
                 content
         ));
-
+        FileG.append(
+                there + "\\" + now + "Po.java",
+                terms
+        );
     }
 
     /*PoDao*/
     @Test
     public void createPoDao() throws Exception {
         FileG.replace(
-                from + "\\" + old + "PoDao.java",
+                here + "\\" + old + "PoDao.java",
                 there + "\\" + now + "PoDao.java",
-                packAndUpAndLow
+                upAndLow
         );
 
         List<Term> terms = new ArrayList<>();
@@ -196,9 +191,9 @@ public class NewG {
     @Test
     public void createPoRepository() throws Exception {
         FileG.replace(
-                from + "\\" + old + "PoRepository.java",
+                here + "\\" + old + "PoRepository.java",
                 there + "\\" + now + "PoRepository.java",
-                packAndUpAndLow
+                upAndLow
         );
     }
 
@@ -206,9 +201,9 @@ public class NewG {
     @Test
     public void createPoUtil() throws Exception {
         FileG.replace(
-                from + "\\" + old + "PoUtil.java",
+                here + "\\" + old + "PoUtil.java",
                 there + "\\" + now + "PoUtil.java",
-                packAndUpAndLow
+                upAndLow
         );
     }
 
@@ -216,20 +211,28 @@ public class NewG {
     @Test
     public void createSpecification() throws Exception {
         FileG.replace(
-                from + "\\" + old + "Specification.java",
+                here + "\\" + old + "Specification.java",
                 there + "\\" + now + "Specification.java",
-                packAndUpAndLow
+                upAndLow
         );
     }
 
     /*Table*/
     @Test
     public void createTable() throws Exception {
-        FileG.replace(
-                from + "\\" + old + "Table.java",
-                there + "\\" + now + "Table.java",
-                packAndUpAndLow
-        );
+        String table = "C:\\work\\table\\src\\main\\java\\com\\qbt\\table\\TemplateEntityTable.java";
+        String tableTo = "C:\\work\\table\\src\\main\\java\\com\\qbt\\table";
+        FileG.replace(table,
+                tableTo + "\\" + now + "Table.java",
+                upAndLow);
+        List<Term> terms = new ArrayList<>();
+        terms.add(new Term(
+                "/*fields*/",
+                fields));
+        /*todo 还没写member*/
+        FileG.append(
+                tableTo + "\\" + now + "Table.java",
+                terms);
     }
 
     private void solveField() {
