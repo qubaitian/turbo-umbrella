@@ -57,24 +57,24 @@ public class NewG {
     /*entity*/
     @Test
     public void createEntity() throws Exception {
-
         FileG.replace(
                 from + "\\" + old + ".java",
                 there + "\\" + now + ".java",
                 packAndUpAndLow
         );
-
         List<Term> terms = new ArrayList<>();
         terms.add(new Term(
                 "/*fields*/",
                 fields
         ));
-
         terms.add(new Term(
                 "/*members*/",
                 members
         ));
-
+        FileG.append(
+                there + "\\" + now + ".java",
+                terms
+        );
     }
 
     /*po*/
