@@ -6,7 +6,7 @@ public class Contract {
     private Integer dr;
 
     /*fields*/
-    /*111*/
+
     /*members*/
 
 }
