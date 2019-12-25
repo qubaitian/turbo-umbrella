@@ -2,7 +2,6 @@ package com.qbt.test.crud;
 
 import com.qbt.test.MybatisTestStarter;
 import com.qbt.test.mock.SimpleReflect;
-import com.qbt.test.template.TemplateEntity;
 import com.yhhl.ebo.commom.persistence.Repository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

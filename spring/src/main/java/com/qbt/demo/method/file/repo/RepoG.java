@@ -1,117 +1,98 @@
-package com.qbt.demo.util;
+package com.qbt.demo.method.file.repo;
 
 import com.qbt.demo.method.file.FileG;
-import com.qbt.demo.method.file.Term;
 import com.qbt.demo.method.file.WordHandler;
-import lombok.Data;
-import org.junit.Test;
+import com.qbt.demo.method.file.line.Term;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewG {
 
-    private static List<Field> fieldList;
-    private static List<Member> memberList;
+public class RepoG {
 
-    String here = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\template";
-    String there = "C:\\work\\manual\\spring\\src\\main\\java\\com\\qbt\\demo\\test";
-    String old = "TemplateEntity";
-    String now = "Bear";
-    String fPack = "com.qbt.demo.template";
-    String tPack = "com.qbt.demo.test";
-    String fields = "\n" +
+    private List<Term> upAndLow = new ArrayList<>();
+    private List<Term> upAndLowAndPack = new ArrayList<>();
+    /*模板文件放在这*/
+    private String template = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\crud";
+    private String old = "TemplateEntity";
+    private String templatePack = "com.qbt.test.crud";
+    /*名 代码路径 包名*/
+    private String now = "Bear";
+    private String table = "bear";
+    private String there = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\file";
+    private String therePack = "com.qbt.test.file";
+    /*mybatis能识别的类型*/
+    private String fields = "\n" +
             "    private String name;\n" +
             "    private String code;";
-    String members = "\n" +
+    /*自定义的成员变量*/
+    private String members = "\n" +
             "    private Bear bear;\n" +
             "    private List<Bear> bears;";
-    List<Term> upAndLow = new ArrayList<>();
+    private List<Field> fieldList = new ArrayList<>();
+    private List<Member> memberList = new ArrayList<>();
 
-    {
+
+    public RepoG(String template, String old, String templatePack, String now, String table, String there, String therePack, String fields, String members) {
+        this.template = template;
+        this.old = old;
+        this.templatePack = templatePack;
+        this.now = now;
+        this.table = table;
+        this.there = there;
+        this.therePack = therePack;
+        this.fields = fields;
+        this.members = members;
+
         solveField();
         solveMember();
-        upAndLow.add(new Term(
-                null,
-                old,
-                now));
-        upAndLow.add(new Term(
-                null,
-                WordHandler.toLower(old),
-                WordHandler.toLower(now)));
-        upAndLow.add(new Term(
-                "/*table*/",
-                "template_entity",
-                WordHandler.camelToUnderline(now)));
+        solveUpAndLow();
+        solveUpAndLowAndPack();
+
     }
 
     /*entity*/
-    @Test
     public void createEntity() throws Exception {
-        String entity = here + "\\" + old + ".java";
+        String entity = template + "\\" + old + ".java";
         String entityTo = there + "\\" + now + ".java";
-        FileG.replace(
-                entity,
-                entityTo,
-                upAndLow
-        );
+        FileG.replace(entity, entityTo, upAndLowAndPack);
         List<Term> terms = new ArrayList<>();
-        terms.add(new Term(
-                "/*fields*/",
-                fields
-        ));
-        terms.add(new Term(
-                "/*members*/",
-                members
-        ));
-        FileG.append(
-                entityTo,
-                terms
-        );
+        terms.add(new Term("/*fields*/",
+                fields));
+        terms.add(new Term("/*members*/",
+                members));
+        FileG.append(entityTo, terms);
     }
 
     /*po*/
-    @Test
     public void createPo() throws Exception {
-        FileG.replace(
-                here + "\\" + old + "Po.java",
-                there + "\\" + now + "Po.java",
-                upAndLow
-        );
+        String po = template + "\\" + old + "Po.java";
+        String poTo = there + "\\" + now + "Po.java";
+        FileG.replace(po, poTo, upAndLowAndPack);
         List<Term> terms = new ArrayList<>();
-        terms.add(new Term(
-                "/*fields*/",
-                fields
-        ));
+        terms.add(new Term("/*fields*/", fields));
         String content = "";
         if (memberList != null) {
             for (Member member : memberList) {
                 content += "\n    private " + member.getType() + " " + member.getName() + ";";
             }
         }
-        terms.add(new Term(
-                "/*members*/",
-                content
-        ));
-        FileG.append(
-                there + "\\" + now + "Po.java",
-                terms
-        );
+        terms.add(new Term("/*members*/", content));
+        FileG.append(poTo, terms);
     }
 
     /*PoDao*/
-    @Test
     public void createPoDao() throws Exception {
-        FileG.replace(
-                here + "\\" + old + "PoDao.java",
-                there + "\\" + now + "PoDao.java",
-                upAndLow
-        );
+        String poDo = template + "\\" + old + "PoDao.java";
+        String toPoDo = there + "\\" + now + "PoDao.java";
 
-        List<Term> terms = new ArrayList<>();
+        FileG.replace(poDo, toPoDo, upAndLowAndPack);
+
         /*InsertField*/
+
         {
+            List<Term> terms = new ArrayList<>();
             String content = "";
             if (fieldList != null) {
                 for (Field field : fieldList) {
@@ -127,10 +108,13 @@ public class NewG {
                     "/*InsertField*/",
                     content
             ));
+            FileG.append(toPoDo, terms);
         }
 
         /*InsertValue*/
+
         {
+            List<Term> terms = new ArrayList<>();
             String content = "";
             if (fieldList != null) {
                 for (Field field : fieldList) {
@@ -146,10 +130,13 @@ public class NewG {
                     "/*InsertValue*/",
                     content
             ));
-
+            FileG.append(toPoDo, terms);
         }
+
         /*UpdateExp*/
+
         {
+            List<Term> terms = new ArrayList<>();
             String content = "";
             if (fieldList != null) {
                 for (Field field : fieldList) {
@@ -165,10 +152,14 @@ public class NewG {
                     "/*UpdateExp*/",
                     content
             ));
+            FileG.append(toPoDo, terms);
 
         }
+
         /*SelectFieldAndAlias*/
+
         {
+            List<Term> terms = new ArrayList<>();
             String content = "";
             if (fieldList != null) {
                 for (Field field : fieldList) {
@@ -184,41 +175,33 @@ public class NewG {
                     "/*SelectFieldAndAlias*/",
                     content
             ));
+            FileG.append(toPoDo, terms);
         }
     }
 
     /*PoRepository*/
-    @Test
+
     public void createPoRepository() throws Exception {
-        FileG.replace(
-                here + "\\" + old + "PoRepository.java",
-                there + "\\" + now + "PoRepository.java",
-                upAndLow
-        );
+        String po = template + "\\" + old + "Po.java";
+        String poTo = there + "\\" + now + "Po.java";
+        FileG.replace(po, poTo, upAndLowAndPack);
     }
 
     /*PoUtil*/
-    @Test
     public void createPoUtil() throws Exception {
-        FileG.replace(
-                here + "\\" + old + "PoUtil.java",
-                there + "\\" + now + "PoUtil.java",
-                upAndLow
-        );
+        String po = template + "\\" + old + "Po.java";
+        String poTo = there + "\\" + now + "Po.java";
+        FileG.replace(po, poTo, upAndLowAndPack);
     }
 
     /*Specification*/
-    @Test
     public void createSpecification() throws Exception {
-        FileG.replace(
-                here + "\\" + old + "Specification.java",
-                there + "\\" + now + "Specification.java",
-                upAndLow
-        );
+        String po = template + "\\" + old + "Po.java";
+        String poTo = there + "\\" + now + "Po.java";
+        FileG.replace(po, poTo, upAndLowAndPack);
     }
 
     /*Table*/
-    @Test
     public void createTable() throws Exception {
         String table = "C:\\work\\table\\src\\main\\java\\com\\qbt\\table\\TemplateEntityTable.java";
         String tableTo = "C:\\work\\table\\src\\main\\java\\com\\qbt\\table";
@@ -237,7 +220,6 @@ public class NewG {
 
     private void solveField() {
         if (fields.contains(";")) {
-            fieldList = new ArrayList<>();
             String[] split = fields.split(";");
             for (String s : split) {
                 if (StringUtils.hasText(s)) {
@@ -265,33 +247,23 @@ public class NewG {
         }
     }
 
-    @Data
-    class Field {
-        private String type;
-        private String name;
-
-        public Field() {
-        }
-
-        public Field(String type, String name) {
-            this.type = type;
-            this.name = name;
-        }
+    private void solveUpAndLow() {
+        upAndLow.add(new Term(
+                null,
+                old,
+                now));
+        upAndLow.add(new Term(
+                null,
+                WordHandler.toLower(old),
+                WordHandler.toLower(now)));
+        upAndLow.add(new Term(
+                "/*table*/",
+                "template_entity",
+                table));
     }
 
-    @Data
-    class Member {
-        private String type;
-        private String name;
-        private String objType;
-
-        public Member() {
-        }
-
-        public Member(String type, String name, String objType) {
-            this.type = type;
-            this.name = name;
-            this.objType = objType;
-        }
+    private void solveUpAndLowAndPack() {
+        upAndLowAndPack.addAll(upAndLow);
+        upAndLowAndPack.add(new Term("pack", templatePack, therePack));
     }
 }

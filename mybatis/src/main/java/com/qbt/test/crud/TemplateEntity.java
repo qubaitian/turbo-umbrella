@@ -1,4 +1,4 @@
-package com.qbt.test.template;
+package com.qbt.test.crud;
 
 public class TemplateEntity {
 

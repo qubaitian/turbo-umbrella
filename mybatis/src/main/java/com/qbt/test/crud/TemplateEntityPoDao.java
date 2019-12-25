@@ -1,13 +1,13 @@
-package com.qbt.test.template;/*adf*/
+package com.qbt.test.crud;/*adf*/
 
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
-public interface ContractPoDao {
+public interface TemplateEntityPoDao {
 
-    String table = "contract";
+    String table = "template_entity";/*table*/
 
     @Insert("INSERT INTO " + table + "(dr" +
             /*InsertField*/
@@ -16,17 +16,17 @@ public interface ContractPoDao {
             /*InsertValue*/
             ")")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void add(ContractPo contractPo);
+    void add(TemplateEntityPo templateEntityPo);
 
     @Update("UPDATE " + table + " " +
             "SET " +
             /*UpdateExp*/
             "dr = 0 " +
             "WHERE id = #{id}")
-    void update(ContractPo contractPo);
+    void update(TemplateEntityPo templateEntityPo);
 
     @Update("UPDATE contract SET dr = 1 WHERE id = #{id}")
-    void delete(ContractPo contractPo);
+    void delete(TemplateEntityPo templateEntityPo);
 
     @Select("<script>" +
             " select id " +
@@ -35,7 +35,7 @@ public interface ContractPoDao {
             " where dr = 0 " +
             " And id = #{id} " +
             " </script>")
-    ContractPo findById(Long id);
+    TemplateEntityPo findById(Long id);
 
     @Select("<script>" +
             " select id " +
@@ -45,6 +45,6 @@ public interface ContractPoDao {
 //            "<if test=' != null'>AND  = #{}</if>" +
 //            "<if test=' != null'>AND  like #{}</if>" +
             " </script>")
-    List<ContractPo> findAll(ContractSpecification contractSpecification);
+    List<TemplateEntityPo> findAll(TemplateEntitySpecification templateEntitySpecification);
 
 }

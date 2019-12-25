@@ -1,7 +1,7 @@
 package com.qbt.demo.test;
 
 import com.qbt.demo.method.file.FileG;
-import com.qbt.demo.method.file.Term;
+import com.qbt.demo.method.file.line.Term;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

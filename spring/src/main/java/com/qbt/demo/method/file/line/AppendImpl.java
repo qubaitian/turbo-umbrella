@@ -1,4 +1,4 @@
-package com.qbt.demo.method.file;
+package com.qbt.demo.method.file.line;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ public class AppendImpl implements LineGenerator {
     public String change(String line, List<Term> terms) {
         for (Term term : terms) {
             if (line.contains(term.getWhere())) {
-                line += "\n"+term.getContent();
+                line +=term.getContent();
             }
         }
         return line;

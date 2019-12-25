@@ -1,6 +1,8 @@
 package com.qbt.demo.method.file;
 
 import com.qbt.demo.method.ReaderAndWriter;
+import com.qbt.demo.method.file.line.LineGenerator;
+import com.qbt.demo.method.file.line.Term;
 
 import java.io.*;
 import java.util.List;

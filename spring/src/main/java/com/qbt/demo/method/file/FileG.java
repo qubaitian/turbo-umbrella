@@ -1,5 +1,9 @@
 package com.qbt.demo.method.file;
 
+import com.qbt.demo.method.file.line.AppendImpl;
+import com.qbt.demo.method.file.line.ReplaceImpl;
+import com.qbt.demo.method.file.line.Term;
+
 import java.util.List;
 
 public class FileG {
