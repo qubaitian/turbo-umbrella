@@ -5,66 +5,56 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 @Mapper
-public interface BearPoDao {
+public interface CandyPoDao {
 
-    String table = "bear";/*table*/
+    String table = "candy";/*table*/
 
     @Insert("INSERT INTO " + table + "(dr" +
             /*InsertField*/
             " ,name " +
             " ,code " +
-            " ,candy " +
-            " ,candies " +
             ") " +
             "VALUES(0" +
             /*InsertValue*/
             " ,#{name} " +
             " ,#{code} " +
-            " ,#{candy} " +
-            " ,#{candies} " +
             ")")
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    void add(BearPo bearPo);
+    void add(CandyPo candyPo);
 
     @Update("UPDATE contract SET dr = 1 WHERE id = #{id}")
-    void delete(BearPo bearPo);
+    void delete(CandyPo candyPo);
 
     @Select("<script>" +
             " select id " +
             /*SelectFieldAndAlias*/
             " ,name name " +
             " ,code code " +
-            " ,candy candy " +
-            " ,candies candies " +
             " from " + table + " " +
             " where dr = 0 " +
 //            "<if test=' != null'>AND  = #{}</if>" +
 //            "<if test=' != null'>AND  like #{}</if>" +
             " </script>")
-    List<BearPo> findAll(BearSpecification bearSpecification);
+    List<CandyPo> findAll(CandySpecification candySpecification);
 
     @Select("<script>" +
             " select id " +
             /*SelectFieldAndAlias*/
             " ,name name " +
             " ,code code " +
-            " ,candy candy " +
-            " ,candies candies " +
             " from " + table + " " +
             " where dr = 0 " +
             " And id = #{id} " +
             " </script>")
-    BearPo findById(Long id);
+    CandyPo findById(Long id);
 
     @Update("UPDATE " + table + " " +
             "SET " +
             /*UpdateExp*/
             "name = #{name}, " +
             "code = #{code}, " +
-            "candy = #{candy}, " +
-            "candies = #{candies}, " +
             "dr = 0 " +
             "WHERE id = #{id}")
-    void update(BearPo bearPo);
+    void update(CandyPo candyPo);
 
 }

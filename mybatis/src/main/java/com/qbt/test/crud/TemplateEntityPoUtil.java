@@ -10,16 +10,15 @@ import java.util.List;
 public class TemplateEntityPoUtil {
     /*autowired*/
 
-    public static List<TemplateEntityPo> toPoList(List<TemplateEntity> list) {
-        if (list == null) {
+    public static TemplateEntity toEntity(TemplateEntityPo templateEntityPo) {
+        if (templateEntityPo == null) {
             return null;
         } else {
-            List<TemplateEntityPo> result = new ArrayList<>();
-            for (TemplateEntity templateEntity : list) {
-                TemplateEntityPo templateEntityPo = toPo(templateEntity);
-                result.add(templateEntityPo);
-            }
-            return result;
+            TemplateEntity templateEntity = new TemplateEntity();
+            SimpleReflect.setter(templateEntity, "id", templateEntityPo.getId());
+            /*setField*/
+            /*setMember*/
+            return templateEntity;
         }
     }
 
@@ -48,15 +47,16 @@ public class TemplateEntityPoUtil {
         }
     }
 
-    public static TemplateEntity toEntity(TemplateEntityPo templateEntityPo) {
-        if (templateEntityPo == null) {
+    public static List<TemplateEntityPo> toPoList(List<TemplateEntity> list) {
+        if (list == null) {
             return null;
         } else {
-            TemplateEntity templateEntity = new TemplateEntity();
-            SimpleReflect.setter(templateEntity, "id", templateEntityPo.getId());
-            /*setField*/
-            /*setMember*/
-            return templateEntity;
+            List<TemplateEntityPo> result = new ArrayList<>();
+            for (TemplateEntity templateEntity : list) {
+                TemplateEntityPo templateEntityPo = toPo(templateEntity);
+                result.add(templateEntityPo);
+            }
+            return result;
         }
     }
 

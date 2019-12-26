@@ -1,8 +1,9 @@
 package com.qbt.test.file;
 
-import java.util.List;
+import lombok.Data;
 
-public class Bear {
+@Data
+public class CandyPo {
 
     private Long id;
     private Integer dr;
@@ -12,7 +13,5 @@ public class Bear {
     private String code;
 
     /*members*/
-    private Candy candy;
-    private List<Candy> candies;
 
 }

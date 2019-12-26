@@ -10,16 +10,15 @@ import java.util.List;
 public class BearPoUtil {
     /*autowired*/
 
-    public static List<BearPo> toPoList(List<Bear> list) {
-        if (list == null) {
+    public static Bear toEntity(BearPo bearPo) {
+        if (bearPo == null) {
             return null;
         } else {
-            List<BearPo> result = new ArrayList<>();
-            for (Bear bear : list) {
-                BearPo bearPo = toPo(bear);
-                result.add(bearPo);
-            }
-            return result;
+            Bear bear = new Bear();
+            SimpleReflect.setter(bear, "id", bearPo.getId());
+            /*setField*/
+            /*setMember*/
+            return bear;
         }
     }
 
@@ -48,15 +47,16 @@ public class BearPoUtil {
         }
     }
 
-    public static Bear toEntity(BearPo bearPo) {
-        if (bearPo == null) {
+    public static List<BearPo> toPoList(List<Bear> list) {
+        if (list == null) {
             return null;
         } else {
-            Bear bear = new Bear();
-            SimpleReflect.setter(bear, "id", bearPo.getId());
-            /*setField*/
-            /*setMember*/
-            return bear;
+            List<BearPo> result = new ArrayList<>();
+            for (Bear bear : list) {
+                BearPo bearPo = toPo(bear);
+                result.add(bearPo);
+            }
+            return result;
         }
     }
 

@@ -1,8 +1,6 @@
 package com.qbt.test.file;
 
-import java.util.List;
-
-public class Bear {
+public class Candy {
 
     private Long id;
     private Integer dr;
@@ -12,7 +10,6 @@ public class Bear {
     private String code;
 
     /*members*/
-    private Candy candy;
-    private List<Candy> candies;
+
 
 }

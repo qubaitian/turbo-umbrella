@@ -1,8 +1,8 @@
-package com.qbt.demo.method.file.repo;
+package com.qbt.demo.method.file;
 
-import com.qbt.demo.method.file.FileG;
-import com.qbt.demo.method.file.WordHandler;
 import com.qbt.demo.method.file.line.Term;
+import com.qbt.demo.method.file.repo.Field;
+import com.qbt.demo.method.file.repo.Member;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -14,30 +14,29 @@ public class RepoG {
     private List<Term> upAndLow = new ArrayList<>();
     private List<Term> upAndLowAndPack = new ArrayList<>();
     /*模板文件放在这*/
-    private String template = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\crud";
-    private String old = "TemplateEntity";
-    private String templatePack = "com.qbt.test.crud";
+    private String template;
+    private String old;
+    private String templatePack;
     /*名 代码路径 包名*/
-    private String now = "Bear";
-    private String table = "bear";
-    private String there = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\file";
-    private String therePack = "com.qbt.test.file";
+    private String now;
+    private String table;
+    private String there;
+    private String therePack;
+
+
     /*mybatis能识别的类型*/
-    private String fields = "\n" +
-            "    private String name;\n" +
-            "    private String code;";
+    private String fields;
     /*自定义的成员变量*/
-    private String members = "\n" +
-            "    private Bear bear;\n" +
-            "    private List<Bear> bears;";
-    private List<Field> fieldList = new ArrayList<>();
-    private List<Member> memberList = new ArrayList<>();
+    private String members;
+    private List<Field> fieldList;
+    private List<Member> memberList;
 
 
-    public RepoG(String template, String old, String templatePack, String now, String table, String there, String therePack, String fields, String members) {
-        this.template = template;
-        this.old = old;
-        this.templatePack = templatePack;
+    public RepoG(String now, String table, String there, String therePack, String fields, String members) {
+        this.template = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\crud";
+        this.old = "TemplateEntity";
+        this.templatePack = "com.qbt.test.crud";
+
         this.now = now;
         this.table = table;
         this.there = there;
@@ -53,23 +52,26 @@ public class RepoG {
     }
 
     /*entity*/
-    public void createEntity() throws Exception {
+    public void createEntity() {
+
         String entity = template + "\\" + old + ".java";
-        String entityTo = there + "\\" + now + ".java";
-        FileG.replace(entity, entityTo, upAndLowAndPack);
+        String toEntity = there + "\\" + now + ".java";
+        FileG.replace(entity, toEntity, upAndLowAndPack);
+
         List<Term> terms = new ArrayList<>();
-        terms.add(new Term("/*fields*/",
-                fields));
-        terms.add(new Term("/*members*/",
-                members));
-        FileG.append(entityTo, terms);
+        terms.add(new Term("/*fields*/", fields));
+        terms.add(new Term("/*members*/", members));
+        FileG.append(toEntity, terms);
+
     }
 
     /*po*/
-    public void createPo() throws Exception {
+    public void createPo() {
+
         String po = template + "\\" + old + "Po.java";
         String poTo = there + "\\" + now + "Po.java";
         FileG.replace(po, poTo, upAndLowAndPack);
+
         List<Term> terms = new ArrayList<>();
         terms.add(new Term("/*fields*/", fields));
         String content = "";
@@ -80,6 +82,7 @@ public class RepoG {
         }
         terms.add(new Term("/*members*/", content));
         FileG.append(poTo, terms);
+
     }
 
     /*PoDao*/
@@ -180,25 +183,24 @@ public class RepoG {
     }
 
     /*PoRepository*/
-
     public void createPoRepository() throws Exception {
-        String po = template + "\\" + old + "Po.java";
-        String poTo = there + "\\" + now + "Po.java";
-        FileG.replace(po, poTo, upAndLowAndPack);
+        String poRepository = template + "\\" + old + "PoRepository.java";
+        String toPoRepository = there + "\\" + now + "PoRepository.java";
+        FileG.replace(poRepository, toPoRepository, upAndLowAndPack);
     }
 
     /*PoUtil*/
     public void createPoUtil() throws Exception {
-        String po = template + "\\" + old + "Po.java";
-        String poTo = there + "\\" + now + "Po.java";
-        FileG.replace(po, poTo, upAndLowAndPack);
+        String poUtil = template + "\\" + old + "PoUtil.java";
+        String toPoUtil = there + "\\" + now + "PoUtil.java";
+        FileG.replace(poUtil, toPoUtil, upAndLowAndPack);
     }
 
     /*Specification*/
     public void createSpecification() throws Exception {
-        String po = template + "\\" + old + "Po.java";
-        String poTo = there + "\\" + now + "Po.java";
-        FileG.replace(po, poTo, upAndLowAndPack);
+        String specification = template + "\\" + old + "Specification.java";
+        String toSpecification = there + "\\" + now + "Specification.java";
+        FileG.replace(specification, toSpecification, upAndLowAndPack);
     }
 
     /*Table*/
@@ -220,6 +222,7 @@ public class RepoG {
 
     private void solveField() {
         if (fields.contains(";")) {
+            fieldList = new ArrayList<>();
             String[] split = fields.split(";");
             for (String s : split) {
                 if (StringUtils.hasText(s)) {

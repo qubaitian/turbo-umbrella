@@ -9,13 +9,11 @@ public class BearPo {
     private Integer dr;
 
     /*fields*/
-
     private String name;
     private String code;
 
     /*members*/
-
-    private Long bear;
-    private String bears;
+    private Long candy;
+    private String candies;
 
 }
