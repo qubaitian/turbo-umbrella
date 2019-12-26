@@ -9,92 +9,92 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class BearPoUtil {
+public class DearPoUtil {
     /*autowired*/
     @Autowired
     Repository<Candy> candyRepository;
 
-    public Bear toEntity(BearPo bearPo) {
-        if (bearPo == null) {
+    public Dear toEntity(DearPo dearPo) {
+        if (dearPo == null) {
             return null;
         } else {
-            Bear bear = new Bear();
-            SimpleReflect.setter(bear, "id", bearPo.getId());
+            Dear dear = new Dear();
+            SimpleReflect.setter(dear, "id", dearPo.getId());
             /*setField*/
-            SimpleReflect.setter(bear, "name", bearPo.getName());
-            SimpleReflect.setter(bear, "code", bearPo.getCode());
+            SimpleReflect.setter(dear, "name", dearPo.getName());
+            SimpleReflect.setter(dear, "code", dearPo.getCode());
             /*setMember*/
             {
-                Long id = bearPo.getCandy();
+                Long id = dearPo.getCandy();
                 Candy entity = candyRepository.findById(id);
-                SimpleReflect.setter(bear, "candy", entity);
+                SimpleReflect.setter(dear, "candy", entity);
             }
             {
                 List<Candy> list = new ArrayList<>();
-                String member = bearPo.getCandies();
+                String member = dearPo.getCandies();
                 String[] split = member.split("/");
                 for (String s : split) {
                     Long id = Long.valueOf(s);
                     Candy entity = candyRepository.findById(id);
                     list.add(entity);
                 }
-                SimpleReflect.setter(bear, "candies", list);
+                SimpleReflect.setter(dear, "candies", list);
             }
-            return bear;
+            return dear;
         }
     }
 
-    public List<Bear> toEntityList(List<BearPo> list) {
+    public List<Dear> toEntityList(List<DearPo> list) {
         if (list == null) {
             return null;
         } else {
-            List<Bear> result = new ArrayList<>();
-            for (BearPo bearPo : list) {
-                Bear bear = toEntity(bearPo);
-                result.add(bear);
+            List<Dear> result = new ArrayList<>();
+            for (DearPo dearPo : list) {
+                Dear dear = toEntity(dearPo);
+                result.add(dear);
             }
             return result;
         }
     }
 
-    public BearPo toPo(Bear bear) {
-        if (bear == null) {
+    public DearPo toPo(Dear dear) {
+        if (dear == null) {
             return null;
         } else {
-            BearPo bearPo = new BearPo();
-            bearPo.setId((Long) SimpleReflect.getter(bear, "id"));
+            DearPo dearPo = new DearPo();
+            dearPo.setId((Long) SimpleReflect.getter(dear, "id"));
             /*setPoField*/
-            bearPo.setName((String) SimpleReflect.getter(bear, "name"));
-            bearPo.setCode((String) SimpleReflect.getter(bear, "code"));
+            dearPo.setName((String) SimpleReflect.getter(dear, "name"));
+            dearPo.setCode((String) SimpleReflect.getter(dear, "code"));
             /*setPoMember*/
             {
-                Candy candy = (Candy) SimpleReflect.getter(bear, "candy");
+                Candy candy = (Candy) SimpleReflect.getter(dear, "candy");
                 candyRepository.add(candy);
-                bearPo.setCandy((Long) SimpleReflect.getter(candy, "id"));
+                dearPo.setCandy((Long) SimpleReflect.getter(candy, "id"));
             }
             {
                 String s = "";
-                List<Candy> list = (List<Candy>) SimpleReflect.getter(bear, "candies");
+                List<Candy> list = (List<Candy>) SimpleReflect.getter(dear, "candies");
                 if (list != null) {
                     for (Candy entity : list) {
                         candyRepository.add(entity);
                         s += SimpleReflect.getter(entity, "id") + "/";
                     }
-                    bearPo.setCandies(s);
+                    dearPo.setCandies(s);
                 }
             }
-            return bearPo;
+            return dearPo;
         }
     }
 
-    public List<BearPo> toPoList(List<Bear> list) {
+    public List<DearPo> toPoList(List<Dear> list) {
         if (list == null) {
             return null;
         } else {
-            List<BearPo> result = new ArrayList<>();
-            for (Bear bear : list) {
-                BearPo bearPo = toPo(bear);
-                result.add(bearPo);
+            List<DearPo> result = new ArrayList<>();
+            for (Dear dear : list) {
+                DearPo dearPo = toPo(dear);
+                result.add(dearPo);
             }
             return result;
         }

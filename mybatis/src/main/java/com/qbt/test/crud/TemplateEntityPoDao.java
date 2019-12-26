@@ -18,7 +18,7 @@ public interface TemplateEntityPoDao {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void add(TemplateEntityPo templateEntityPo);
 
-    @Update("UPDATE contract SET dr = 1 WHERE id = #{id}")
+    @Update("UPDATE " + table + " SET dr = 1 WHERE id = #{id}")
     void delete(TemplateEntityPo templateEntityPo);
 
     @Select("<script>" +

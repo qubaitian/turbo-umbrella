@@ -8,9 +8,7 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class RepoG {
-
     private List<Term> upAndLow = new ArrayList<>();
     private List<Term> upAndLowAndPack = new ArrayList<>();
     /*模板文件放在这*/
@@ -22,15 +20,12 @@ public class RepoG {
     private String table;
     private String there;
     private String therePack;
-
-
     /*mybatis能识别的类型*/
     private String fields;
     /*自定义的成员变量*/
     private String members;
     private List<Field> fieldList;
     private List<Member> memberList;
-
 
     public RepoG(String now, String table, String there, String therePack, String fields, String members) {
         this.template = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\crud";
@@ -194,6 +189,167 @@ public class RepoG {
         String poUtil = template + "\\" + old + "PoUtil.java";
         String toPoUtil = there + "\\" + now + "PoUtil.java";
         FileG.replace(poUtil, toPoUtil, upAndLowAndPack);
+
+        /*setField*/
+        {
+            List<Term> terms = new ArrayList<>();
+            String content = "";
+            if (fieldList != null) {
+                for (Field field : fieldList) {
+                    content += "\n" +
+                            "            SimpleReflect.setter(" + WordHandler.toLower(now) + ", \"" + field.getName() + "\", " + WordHandler.toLower(now) + "Po.get" + WordHandler.toUpper(field.getName()) + "());";
+                }
+            }
+            terms.add(new Term(
+                    "/*setField*/",
+                    content
+            ));
+            FileG.append(toPoUtil, terms);
+        }
+
+        /*setMember*/
+        {
+            List<Term> terms = new ArrayList<>();
+            String content = "";
+            if (memberList != null) {
+                for (Member member : memberList) {
+                    if (member.getObjType().contains("List")) {
+                        String substring = member.getObjType().substring(5, member.getObjType().length() - 1);
+                        content += "\n" +
+//                                "            {\n" +
+//                                "                List<Candy> list = new ArrayList<>();\n" +
+//                                "                String member = bearPo.getCandies();\n" +
+//                                "                String[] split = member.split(\"/\");\n" +
+//                                "                for (String s : split) {\n" +
+//                                "                    Long id = Long.valueOf(s);\n" +
+//                                "                    Candy entity = candyRepository.findById(id);\n" +
+//                                "                    list.add(entity);\n" +
+//                                "                }\n" +
+//                                "                SimpleReflect.setter(bear, \"candies\", list);\n" +
+//                                "            }" +
+                                "            {\n" +
+                                "                List<" + substring + "> list = new ArrayList<>();\n" +
+                                "                String member = " + WordHandler.toLower(now) + "Po.get" + WordHandler.toUpper(member.getName()) + "();\n" +
+                                "                String[] split = member.split(\"/\");\n" +
+                                "                for (String s : split) {\n" +
+                                "                    Long id = Long.valueOf(s);\n" +
+                                "                    " + substring + " entity = " + WordHandler.toLower(substring) + "Repository.findById(id);\n" +
+                                "                    list.add(entity);\n" +
+                                "                }\n" +
+                                "                SimpleReflect.setter(" + WordHandler.toLower(now) + ", \"" + member.getName() + "\", list);\n" +
+                                "            }";
+                    } else {
+                        content += "\n" +
+//                                "            {\n" +
+//                                "                Long id = bearPo.getCandy();\n" +
+//                                "                Candy entity = candyRepository.findById(id);\n" +
+//                                "                SimpleReflect.setter(bear, \"candy\", entity);\n" +
+//                                "            }" +
+                                "            {\n" +
+                                "                Long id = " + WordHandler.toLower(now) + "Po.get" + WordHandler.toUpper(member.getName()) + "();\n" +
+                                "                " + member.getObjType() + " entity = " + WordHandler.toLower(member.getName()) + "Repository.findById(id);\n" +
+                                "                SimpleReflect.setter("+WordHandler.toLower(now)+", \"" + member.getName() + "\", entity);\n" +
+                                "            }";
+                    }
+                }
+            }
+            terms.add(new Term(
+                    "/*setMember*/",
+                    content
+            ));
+            FileG.append(toPoUtil, terms);
+        }
+
+        /*setPoField*/
+        {
+            List<Term> terms = new ArrayList<>();
+            String content = "";
+            if (fieldList != null) {
+                for (Field field : fieldList) {
+                    content += "\n            " + WordHandler.toLower(now) + "Po.set" + WordHandler.toUpper(field.getName()) + "((" + field.getType() + ") SimpleReflect.getter(" + WordHandler.toLower(now) + ", \"" + field.getName() + "\"));";
+                }
+            }
+            terms.add(new Term(
+                    "/*setPoField*/",
+                    content
+            ));
+            FileG.append(toPoUtil, terms);
+        }
+
+        /*setPoMember*/
+        {
+            List<Term> terms = new ArrayList<>();
+            String content = "";
+            if (memberList != null) {
+                for (Member member : memberList) {
+                    if (member.getObjType().contains("List")) {
+                        String substring = member.getObjType().substring(5, member.getObjType().length() - 1);
+                        content+="\n" +
+//                                "            {\n" +
+//                                "                String s = \"\";\n" +
+//                                "                List<Candy> list = (List<Candy>) SimpleReflect.getter(bear, \"candies\");\n" +
+//                                "                if (list != null) {\n" +
+//                                "                    for (Candy entity : list) {\n" +
+//                                "                        candyRepository.add(entity);\n" +
+//                                "                        s += SimpleReflect.getter(entity, \"id\") + \"/\";\n" +
+//                                "                    }\n" +
+//                                "                    bearPo.setCandies(s);\n" +
+//                                "                }\n" +
+//                                "            }" +
+                                "            {\n" +
+                                "                String s = \"\";\n" +
+                                "                List<"+substring+"> list = (List<"+substring+">) SimpleReflect.getter("+WordHandler.toLower(now)+", \""+member.getName()+"\");\n" +
+                                "                if (list != null) {\n" +
+                                "                    for ("+substring+" entity : list) {\n" +
+                                "                        "+WordHandler.toLower(substring)+"Repository.add(entity);\n" +
+                                "                        s += SimpleReflect.getter(entity, \"id\") + \"/\";\n" +
+                                "                    }\n" +
+                                "                    "+WordHandler.toLower(now)+"Po.set"+WordHandler.toUpper(member.getName())+"(s);\n" +
+                                "                }\n" +
+                                "            }";
+
+                    } else {
+                        String objType = member.getObjType();
+                        content += "\n" +
+                                "            {\n" +
+                                "                " + objType + " " + WordHandler.toLower(objType) + " = (" + objType + ") SimpleReflect.getter(" + WordHandler.toLower(now) + ", \"" + member.getName() + "\");\n" +
+                                "                " + WordHandler.toLower(objType) + "Repository.add(" + WordHandler.toLower(objType) + ");\n" +
+                                "                " + WordHandler.toLower(now) + "Po.set" + objType + "((Long) SimpleReflect.getter(" + WordHandler.toLower(objType) + ", \"id\"));\n" +
+                                "            }";
+                    }
+                }
+            }
+            terms.add(new Term(
+                    "/*setPoMember*/",
+                    content
+            ));
+            FileG.append(toPoUtil, terms);
+        }
+
+        /*autowired*/
+        {
+            List<Term> terms = new ArrayList<>();
+            String content = "";
+            if (memberList != null) {
+                for (Member member : memberList) {
+                    if (member.getObjType().contains("List")) {
+                        String substring = member.getObjType().substring(5, member.getObjType().length() - 1);
+                        content += "\n" +
+                                "    @Autowired\n" +
+                                "    Repository<" + substring + "> " + WordHandler.toLower(substring) + "Repository;";
+                    } else {
+                        content += "\n" +
+                                "    @Autowired\n" +
+                                "    Repository<" + member.getObjType() + "> " + WordHandler.toLower(member.getObjType()) + "Repository;";
+                    }
+                }
+            }
+            terms.add(new Term(
+                    "/*autowired*/",
+                    content
+            ));
+            FileG.append(toPoUtil, terms);
+        }
     }
 
     /*Specification*/
@@ -210,11 +366,20 @@ public class RepoG {
         FileG.replace(table,
                 tableTo + "\\" + now + "Table.java",
                 upAndLow);
+
         List<Term> terms = new ArrayList<>();
-        terms.add(new Term(
-                "/*fields*/",
-                fields));
-        /*todo 还没写member*/
+        if (fields != null) {
+            terms.add(new Term(
+                    "/*fields*/",
+                    fields));
+        }
+        String content = "";
+        if (memberList != null) {
+            for (Member member : memberList) {
+                content += "\n    private " + member.getType() + " " + member.getName() + ";";
+            }
+        }
+        terms.add(new Term("/*members*/", content));
         FileG.append(
                 tableTo + "\\" + now + "Table.java",
                 terms);
@@ -269,4 +434,5 @@ public class RepoG {
         upAndLowAndPack.addAll(upAndLow);
         upAndLowAndPack.add(new Term("pack", templatePack, therePack));
     }
+
 }

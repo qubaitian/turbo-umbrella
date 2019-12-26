@@ -10,9 +10,6 @@ public class Term {
     private String newWord;
     private String content;
 
-    public Term() {
-    }
-
     public Term(String where, String oldWord, String newWord) {
         this.where = where;
         this.oldWord = oldWord;

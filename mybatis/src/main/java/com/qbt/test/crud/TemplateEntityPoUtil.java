@@ -1,4 +1,4 @@
-package com.qbt.test.crud;
+package com.qbt.test.crud;/*pack*/
 
 import com.qbt.test.mock.SimpleReflect;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import java.util.List;
 public class TemplateEntityPoUtil {
     /*autowired*/
 
-    public static TemplateEntity toEntity(TemplateEntityPo templateEntityPo) {
+    public TemplateEntity toEntity(TemplateEntityPo templateEntityPo) {
         if (templateEntityPo == null) {
             return null;
         } else {
@@ -22,7 +22,7 @@ public class TemplateEntityPoUtil {
         }
     }
 
-    public static List<TemplateEntity> toEntityList(List<TemplateEntityPo> list) {
+    public List<TemplateEntity> toEntityList(List<TemplateEntityPo> list) {
         if (list == null) {
             return null;
         } else {
@@ -35,7 +35,7 @@ public class TemplateEntityPoUtil {
         }
     }
 
-    public static TemplateEntityPo toPo(TemplateEntity templateEntity) {
+    public TemplateEntityPo toPo(TemplateEntity templateEntity) {
         if (templateEntity == null) {
             return null;
         } else {
@@ -47,7 +47,7 @@ public class TemplateEntityPoUtil {
         }
     }
 
-    public static List<TemplateEntityPo> toPoList(List<TemplateEntity> list) {
+    public List<TemplateEntityPo> toPoList(List<TemplateEntity> list) {
         if (list == null) {
             return null;
         } else {

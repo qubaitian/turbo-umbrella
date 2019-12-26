@@ -11,5 +11,13 @@ public class Candy {
 
     /*members*/
 
+    public Candy() {
+    }
 
+    public Candy(Long id, Integer dr, String name, String code) {
+        this.id = id;
+        this.dr = dr;
+        this.name = name;
+        this.code = code;
+    }
 }
