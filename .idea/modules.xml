@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/manual.iml" filepath="$PROJECT_DIR$/.idea/manual.iml" />
       <module fileurl="file://$PROJECT_DIR$/mybatis/mybatis.iml" filepath="$PROJECT_DIR$/mybatis/mybatis.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/table/table.iml" filepath="$PROJECT_DIR$/table/table.iml" />
     </modules>
   </component>
 </project>

@@ -3,6 +3,7 @@ package com.qbt.demo.method.file;
 import com.qbt.demo.method.file.line.Term;
 import com.qbt.demo.method.file.repo.Field;
 import com.qbt.demo.method.file.repo.Member;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -26,11 +27,17 @@ public class RepoG {
     private String members;
     private List<Field> fieldList;
     private List<Member> memberList;
+    /*表文件位置*/
+    private String tableTemplate;
+    private String newTableTo;
 
     public RepoG(String now, String table, String there, String therePack, String fields, String members) {
-        this.template = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\test\\crud";
+        this.template = "C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\template\\repository\\change";
         this.old = "TemplateEntity";
-        this.templatePack = "com.qbt.test.crud";
+        this.templatePack = "com.qbt.template.repository.change";
+
+        this.tableTemplate="C:\\work\\manual\\table\\src\\main\\java\\com\\qbt\\table\\TemplateEntityTable.java";
+        this.newTableTo="C:\\work\\manual\\table\\src\\main\\java\\com\\qbt\\table";
 
         this.now = now;
         this.table = table;
@@ -361,8 +368,8 @@ public class RepoG {
 
     /*Table*/
     public void createTable() throws Exception {
-        String table = "C:\\work\\table\\src\\main\\java\\com\\qbt\\table\\TemplateEntityTable.java";
-        String tableTo = "C:\\work\\table\\src\\main\\java\\com\\qbt\\table";
+        String table = tableTemplate;
+        String tableTo = newTableTo;
         FileG.replace(table,
                 tableTo + "\\" + now + "Table.java",
                 upAndLow);
