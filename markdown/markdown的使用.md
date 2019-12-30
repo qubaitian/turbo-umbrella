@@ -89,3 +89,13 @@ ___粗斜体文本___
     >       
     > 学的不仅是技术更是梦想
 * 第二项 
+
+`printf()` 函数
+
+这是一个链接 [菜鸟教程](https://www.runoob.com)
+
+这也是个链接 <https://www.runoob.com>
+
+这不是个链接 (https://www.runoob.com)
+
+这个是个链接 [^菜鸟教程]
