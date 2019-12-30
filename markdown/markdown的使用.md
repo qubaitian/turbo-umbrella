@@ -1,13 +1,10 @@
-# Hello World! 
-
-这是一个普通段落。
-
+# Hello World!  
+这是一个普通段落。 
 <table>
     <tr>
         <td>Foo</td>
     </tr>
-</table>
-
+</table> 
 这是另一个普通段落。
 
 Markdown 标题
