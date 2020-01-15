@@ -26,6 +26,7 @@ public interface BearPoDao {
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void add(BearPo bearPo);
 
+
     @Update("UPDATE " + table + " SET dr = 1 WHERE id = #{id}")
     void delete(BearPo bearPo);
 

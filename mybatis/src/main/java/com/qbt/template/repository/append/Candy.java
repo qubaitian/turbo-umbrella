@@ -8,6 +8,7 @@ public class Candy {
     /*fields*/
     private String name;
     private String code;
+    /*fields*/
 
     /*members*/
 

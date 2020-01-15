@@ -8,21 +8,22 @@ public class RepoGTest {
     @Test
     void test1() throws Exception {
         RepoG repoG = new RepoG(
-                "FormalContract",
-                "formal_contract",
-                "C:\\work\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\business\\repository\\contract",
-                "com.yhhl.ebo.business.repository.contract",
+                "Invoice",
+                "invoice",
+                "C:\\work\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\business\\repository\\invoice",
+                "com.yhhl.ebo.business.repository.invoice",
                 "\n" +
-                        "    private Integer tag;\n" +
-                        "    private String partyA;\n" +
-                        "    private String partyB;\n" +
-                        "    private Long organizationId;\n" +
-                        "    private String contractNumber;\n" +
-                        "    private String contractName;\n" +
-                        "    private BigDecimal contractAmount;\n" +
-                        "    private Integer contractStatus;\n" +
-                        "    private Long creatorId;\n" +
-                        "    private Long originalId;",
+                        "    private Long paymentId;\n" +
+                        "    private String companyName;\n" +
+                        "    private String taxpayerNumber;\n" +
+                        "    private String address;\n" +
+                        "    private String phone;\n" +
+                        "    private String openBank;\n" +
+                        "    private String bankAccount;\n" +
+                        "    private String content;\n" +
+                        "    private BigDecimal amount;\n" +
+                        "    private Double taxRate;\n" +
+                        "    private BigDecimal taxAmount;",
                 "\n"/* +
                     "    private Candy candy;\n" +
                     "    private List<Candy> candies;"*/

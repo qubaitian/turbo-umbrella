@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+
+  <button @click="btnclick(123)">2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
+  <button>6</button>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      counter: 5
+    },
+    methods: {
+      increment() {
+        this.counter++
+      },
+      decrement() {
+        this.counter--
+      },
+      btnclick(abc){
+        console.log('-----',abc)
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

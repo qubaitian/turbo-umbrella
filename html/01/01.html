@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active {
+      color: rebeccapurple;
+    }
+  </style>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <h2 :style="{fontSize: '50px' ,color: 'red'}">{{message}}</h2>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+          message:'nihao'
+        }
+    })
+</script>
+
+</body>
+</html>

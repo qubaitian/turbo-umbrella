@@ -7,17 +7,23 @@
 </head>
 <body>
 <div id="app">
-
+    <p>{{product.value}}</p>
 </div>
 <script>
-    var vm=new Vue({
-        el:"#app",
-        data:{
-
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            product: 0
         },
-        method
+        created() {
+            fetch('http://localhost:8080/time')
+                .then(response =>
+                    response.json())
+                .then(res => {
+                    console.log(res)
+                })
+        }
     })
 </script>
-
 </body>
 </html>

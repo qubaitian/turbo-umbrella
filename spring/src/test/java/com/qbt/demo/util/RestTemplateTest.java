@@ -47,7 +47,6 @@ public class RestTemplateTest {
         getApples();
         getApplesById();
         List<String> list = Arrays.asList("1", "2", "3");
-
     }
 
     private void deleteApplesById() {
