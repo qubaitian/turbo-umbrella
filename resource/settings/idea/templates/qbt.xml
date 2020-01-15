@@ -33,4 +33,16 @@
       <option name="JAVA_CODE" value="true" />
     </context>
   </template>
+  <template name="st" value="package com.yhhl.ebo.repository;&#10;&#10;import com.yhhl.ebo.IntegrationStarter;&#10;import com.yhhl.ebo.business.domain.$name$receipt.$Name$Receipt;&#10;import com.yhhl.ebo.commom.persistence.Repository;&#10;import org.junit.Test;&#10;import org.junit.runner.RunWith;&#10;import org.springframework.beans.factory.annotation.Autowired;&#10;import org.springframework.boot.test.context.SpringBootTest;&#10;import org.springframework.test.context.junit4.SpringRunner;&#10;import org.springframework.transaction.support.TransactionTemplate;&#10;&#10;import javax.sql.DataSource;&#10;&#10;import static org.hamcrest.CoreMatchers.equalTo;&#10;import static org.hamcrest.MatcherAssert.assertThat;&#10;&#10;@RunWith(SpringRunner.class)&#10;@SpringBootTest(classes = IntegrationStarter.class)&#10;public class $Name$ReceiptRepositoryTest extends DbunitTestCase {&#10;    @Autowired&#10;    private Repository&lt;$Name$Receipt&gt; repository;&#10;    @Autowired&#10;    private TransactionTemplate transactionTemplate;&#10;    @Autowired&#10;    private DataSource dataSource;&#10;&#10;    @Override&#10;    protected DataSource getDataSource() {&#10;        return dataSource;&#10;    }&#10;    &#10;&#10;    @Test&#10;    public void testAdd$Name$Receipt() {&#10;        Long id = transactionTemplate.execute((ts) -&gt; {&#10;            $Name$Receipt $name$Receipt = new $Name$Receipt();&#10;            repository.add($name$Receipt);&#10;            return $name$Receipt.getId();&#10;        });&#10;&#10;        transactionTemplate.execute((ts) -&gt; {&#10;            $Name$Receipt $name$Receipt = repository.findById(id);&#10;            assertThat($name$Receipt.getId(), equalTo(id));&#10;            return null;&#10;        });&#10;    }&#10;}&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="Name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="name" expression="decapitalize(Name)" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="va" value="&lt;div id=&quot;app&quot;&gt;&#10;&lt;/div&gt;&#10;&lt;script&gt;&#10;    var app=new Vue({&#10;        el:&quot;#app&quot;,&#10;        data:{&#10;&#10;        }&#10;    })&#10;&lt;/script&gt;" description="vue app" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+    </context>
+  </template>
 </templateSet>
