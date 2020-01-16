@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  {{message1}}
+  {{message2}}
+  {{message3}}
+  {{message4}}
+  {{message5}}
+</div>
+<script>
+  //函数式编程
+  //编程范式:命令式编程,声明式编程
+  const nums = [10, 20, 111, 222, 30, 40];
+  //filter回调函数:必须返回一个布尔值
+  //true的话自动加入新数组
+  //false的过滤掉
+  let nums1 = nums.filter(function (n) {
+    return n < 100
+  });
+  let nums2 = nums1.map(function (n) {
+    return n * 2;
+  });
+  //reduce 对数组所有内容进行操作
+  let number = nums2.reduce(function (pre, n) {
+    return pre + n;
+  }, 10);
+
+  let total1 = nums.filter(n => n < 100).map(n => n * 2).reduce((pre, n) => pre + n);
+
+  let total = nums.filter(function (n) {
+    return n < 100;
+  }).map(function (n) {
+    return n * 2;
+  }).reduce(function (pre, n) {
+    return pre + n;
+  });
+
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message1: nums1,
+      message2: nums2,
+      message3: number,
+      message4: total,
+      message5: total1
+    }
+  })
+</script>
+</body>
+</html>

@@ -7,28 +7,30 @@
 </head>
 <body>
 <div id="app">
-
-  <button @click="btnclick(123)">2</button>
-  <button>3</button>
-  <button>4</button>
-  <button>5</button>
-  <button>6</button>
+  <input type="text" @keyup.enter="keyup">
 </div>
 <script>
+  //.stop阻止冒泡
+  //.prevent组织默认事件
+  //.keyup keydown监听某个键盘的点击
+  //.once只触发一次
   var app = new Vue({
     el: "#app",
     data: {
       counter: 5
     },
     methods: {
-      increment() {
-        this.counter++
+      btnC(){
+        console.log('btnC');
       },
-      decrement() {
-        this.counter--
+      divC(){
+        console.log('divC');
       },
-      btnclick(abc){
-        console.log('-----',abc)
+      subC(){
+        console.log('subC');
+      },
+      keyup(){
+        console.log('keyup');
       }
     }
   })

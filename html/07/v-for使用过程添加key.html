@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="item in letters" :key="item">{{item}}</li>
+  </ul>
+  <button @click="btnC">按钮</button>
+</div>
+<script>
+  //哪些数组方法是响应式的
+  //通过索引值直接修改不是响应式的
+  var app = new Vue({
+    el: "#app",
+    data: {
+      letters: ['a', 'b', 'c', 'd']
+    },
+    methods: {
+      btnC() {
+        //响应式
+        // this.letters.push('aaaa')
+        // this.letters.pop()
+        // this.letters.shift()
+        //非相应式
+        // this.letters[0]='mmmm'
+        // this.letters.splice(0,1,'bbb')
+        Vue.set(this.letters,0,'bbb')
+      }
+    }
+  })
+</script>
+</body>
+</html>

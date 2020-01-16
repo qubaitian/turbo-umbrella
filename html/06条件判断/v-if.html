@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <h2 v-if="isShow">{{message}}</h2>
+  <h2 v-else="isShow"> isShow为false显示我 </h2>
+
+  <p>这是message的内容 {{message}} </p>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: 'nihao',
+      isShow: true,
+      score:89
+    },
+    computed:{
+
+    }
+  })
+</script>
+
+</body>
+</html>

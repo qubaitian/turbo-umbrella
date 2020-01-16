@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in names">{{index+1}}.{{item}}</li>
+  </ul>
+  <ul>
+    <li v-for="(value,key,index) in info">{{index}}.{{key}}.{{value}}</li>
+  </ul>
+</div>
+<script>
+  //v-show 添加样式 display:none
+  //v-if 条件为false时 元素根本不存在
+  var app = new Vue({
+    el: "#app",
+    data: {
+      info: {
+        name: 'why',
+        age: 18,
+        height: 1.88
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

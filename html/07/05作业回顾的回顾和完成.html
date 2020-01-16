@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    .active {
+      color: rebeccapurple;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li @click="change(index)" :class="isActive(index)" v-for="(item,index) in movies">{{item}}</li>
+  </ul>
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      movies: ['haiwang', 'haidao', 'haier'],
+      currentIndex: 0,
+      active: {
+        active: true
+      },
+      neg: {
+        active: false
+      }
+    },
+    methods: {
+      // isActive(index) {
+      //   if (this.currentIndex === index) {
+      //     this.active.active = true;
+      //   } else {
+      //     this.active.active = false;
+      //   }
+      //   return this.active
+      // },
+      isActive(index) {
+        if (this.currentIndex === index) {
+          return this.active
+        } else {
+          return this.neg
+        }
+      },
+      change(index) {
+        this.currentIndex = index;
+      }
+    }
+  })
+</script>
+</body>
+</html>
