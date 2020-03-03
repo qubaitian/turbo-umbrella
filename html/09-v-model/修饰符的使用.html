@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--  lazy 回车 和 失去焦点 才更新-->
+  <input type="text" v-model.lazy.trim="message">
+  <h2>123{{message}}123</h2>
+
+<!--  number可以让model的类型固定为number-->
+<!--  <input type="number" v-model.lazy.number="age">-->
+<!--  {{typeof age}}{{age}}-->
+<!--  自动处理前后的空格-->
+
+</div>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: 'nihao',
+      // age:1
+    }
+  })
+</script>
+</body>
+</html>

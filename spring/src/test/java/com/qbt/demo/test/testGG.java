@@ -11,10 +11,10 @@ public class testGG {
 
         repositoryG.setOldWhere("C:\\work\\manual\\mybatis\\src\\main\\java\\com\\qbt\\template\\repository\\slim");
         repositoryG.setOldName("Template");
-        repositoryG.setNewWhere("C:\\work\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\business\\repository\\receipt");
-        repositoryG.setNewName("Receipt");
-        repositoryG.setTableName("receipt");
-        repositoryG.setEntity("C:\\work\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\business\\domain\\receipt\\Receipt.java");
+        repositoryG.setNewWhere("C:\\work\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\intention\\repository");
+        repositoryG.setNewName("Intention");
+        repositoryG.setTableName("ebo_intention");
+        repositoryG.setEntity("C:\\work\\ebo\\ebo-contract\\src\\main\\java\\com\\yhhl\\ebo\\intention\\domain\\Intention.java");
         repositoryG.afterSetter();
 
         repositoryG.createTable();

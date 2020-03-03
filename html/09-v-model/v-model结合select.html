@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <label v-for="item in source" :for="item">
+    <input type="checkbox" :value="item" :id="item" v-model="hobbies">{{item}}
+  </label>
+  {{hobbies}}
+</div>
+<script>
+  //vue值绑定
+  //修饰符 lazy number trim
+  var app = new Vue({
+    el: "#app",
+    data: {
+      fruit: [],
+      hobbies: [],
+      source: ['l', 'z', 'p']
+    }
+  })
+</script>
+</body>
+</html>
