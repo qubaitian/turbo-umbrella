@@ -23,11 +23,15 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="17b6a87c-f67b-4073-8e9c-eae7adcf1991">
+        <schema name="world" object-types="column, dataset trigger, view, table, index, function, procedure, constraint" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="17b6a87c-f67b-4073-8e9c-eae7adcf1991">
-      <console name="Connection" type="STANDARD" schema="mysql" session="Main"><![CDATA[select * from world.student]]></console>
+      <console name="Connection" type="STANDARD" schema="mysql" session="Main">select * from world.student</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
