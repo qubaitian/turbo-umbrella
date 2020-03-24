@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/py/py.iml" filepath="$PROJECT_DIR$/py/py.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/table/table.iml" filepath="$PROJECT_DIR$/table/table.iml" />
+      <module fileurl="file://$PROJECT_DIR$/template/template.iml" filepath="$PROJECT_DIR$/template/template.iml" />
     </modules>
   </component>
 </project>
