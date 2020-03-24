@@ -10,6 +10,11 @@ Apache软件基金,也就是Apache Software Foundation
 美国
 ## how
 维护很多项目
+Tomcat
+hadoop
+maven
+ZooKeeper等
+http://www.apache.org/index.html#projects-list
 ## howmuch
 开源
 
