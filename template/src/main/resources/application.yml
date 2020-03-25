@@ -1,8 +1,6 @@
 spring:
-  flyway:
-    
   datasource:
-    url: jdbc:mysql://122.51.240.129:3306/world
+    url: jdbc:mysql://122.51.240.129:3306/world2
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
