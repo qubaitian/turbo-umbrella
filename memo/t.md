@@ -99,7 +99,7 @@ Quotes
 Html
 -------
 
-This is inline <span>html</html>.
+
 And this is an html block.
 
 <table>
