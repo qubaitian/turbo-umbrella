@@ -52,6 +52,17 @@ This
     code
       fence
 ```
+1. df
+2. df
+2. df
+2. 
+    2. 
+    3. 
+    4. 
+        3. 
+        4.
+        
+
 
 Inline `code span in a` paragraph.
 
@@ -153,6 +164,10 @@ Mixed:
 	* Fie
 	* Foe
 3. Third
+    1. df
+    2. df
+    2. df
+    
 
 
 Tables:
